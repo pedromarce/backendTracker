@@ -1,0 +1,16 @@
+{
+  "region": "MSBL",
+  "tableName": "fund",
+  "id": "0x0000000009675f57",
+  "created": 150695655992,
+  "action": "UPDATE",
+  "record": {
+    "regn": "MSBL",
+    "fund-no": "G58",
+    "fund-full-name:": "MS INVF ABSOLUTE RETURN FIXED INCOME AHR USD HSC ",
+    "fund-name": "MS INVF AB RETFIX INC AHR HSC",
+    "fund-base-currency": "EUR",
+    "Idrow": "0x0000000000080b00",
+    "legalundId": "002"
+  }
+}

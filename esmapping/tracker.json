@@ -1,0 +1,45 @@
+{"settings": {
+  "analysis": {
+    "normalizer": {
+      "myUpperCase": {
+        "type": "custom",
+        "filter": [ "uppercase" ]
+      }
+    }
+  }
+},
+  "mappings": {
+    "tracker": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "entity": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256,
+              "normalizer": "myUpperCase"
+            }
+          }
+        },
+        "entity_name": {
+          "type": "text"
+        },
+        "entity_category": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256,
+              "normalizer": "myUpperCase"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

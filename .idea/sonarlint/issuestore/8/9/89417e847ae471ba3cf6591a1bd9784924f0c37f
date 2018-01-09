@@ -1,0 +1,12 @@
+
+Dsquid:S1172"*Remove this unused method parameter "key".(ï•Ëäûÿÿÿÿ
+{squid:UselessImportCheck"YRemove this unused import 'com.rbc.rbcone.data.rest.kafka.factory.ViewStoreEventFactory'.(—Õ·È
+Msquid:UselessImportCheck"+Remove this unused import 'java.util.Date'.(¸…¼ü
+esquid:UselessImportCheck">Remove this unused import 'org.apache.kafka.streams.KeyValue'.(‘‘È‰ıÿÿÿÿ
+psquid:UselessImportCheck"NRemove this unused import 'com.rbc.rbcone.data.rest.kafka.dto.ViewStoreEvent'.(Í» Ğ
+|squid:UselessImportCheck"ZRemove this unused import 'com.rbc.rbcone.data.viewstore.commons.inject.ViewStoreAccount'.(ÀÔ˜
+ksquid:UselessImportCheck"IRemove this unused import 'com.rbc.rbcone.data.rest.kafka.dto.SaraEvent'.(ú­Âé
+„squid:UselessImportCheck"]Remove this unused import 'com.rbc.rbcone.data.viewstore.commons.inject.ViewStoreShareClass'.(·•¬øÿÿÿÿ
+zsquid:UselessImportCheck"YRemove this unused import 'com.rbc.rbcone.data.viewstore.commons.inject.ViewStoreDealer'.(Ç›ÍR
+ˆsquid:UselessImportCheck"aRemove this unused import 'com.rbc.rbcone.data.viewstore.commons.inject.ViewStoreShareClassCode'.(ªßáşÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ

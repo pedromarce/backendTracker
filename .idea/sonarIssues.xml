@@ -38,6 +38,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/AccountViewStoreStream.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java">
           <value>
             <set />

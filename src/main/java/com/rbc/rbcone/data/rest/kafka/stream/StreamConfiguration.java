@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@DependsOn({"AccountViewStoreStream", "SaraEventRouterStream"})
+@DependsOn({"AccountViewStoreStream"})
 public class StreamConfiguration {
 
     private KafkaPropertiesConfig kafkaPropertiesConfig;

@@ -23,10 +23,9 @@ public class RestToKafkaApplication {
 
     @Bean
     public RestHighLevelClient restHighLevelClient(@Value("${elasticsearch.server.url}") String serverUrl,
-                                                   @Value("${elasticsearch.port}") Integer port,
-                                                   @Value("${elasticsearch.protocol}") String protocol) throws Exception {
+                                                   @Value("${elasticsearch.port}") Integer port) throws Exception {
         RestClient client = RestClient.builder(
-                new HttpHost(InetAddress.getByName(serverUrl), port, protocol)).build();
+                new HttpHost(InetAddress.getByName(serverUrl), port)).build();
 
         return new RestHighLevelClient(client);
     }

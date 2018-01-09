@@ -8,8 +8,6 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import org.apache.http.HttpHost;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.KStreamBuilder;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +17,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 
 @SpringBootApplication
 public class RestToKafkaApplication {

@@ -70,8 +70,8 @@
       <file leaf-file-name="logstash.conf" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/logstash/logstash.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -104,7 +104,11 @@
       <find>http://2a481954-kafka0.pub.or.eventador.io:9092/</find>
       <find>xl15lsrv0003:9992</find>
       <find>9200</find>
+      <find>//</find>
     </findStrings>
+    <replaceStrings>
+      <replace>/</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,7 +164,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="40" />
-    <option name="y" value="62" />
+    <option name="y" value="38" />
     <option name="width" value="1400" />
     <option name="height" value="795" />
   </component>
@@ -386,15 +390,15 @@
       <updated>1515423257207</updated>
       <workItem from="1515423261718" duration="1778000" />
       <workItem from="1515427718344" duration="3371000" />
-      <workItem from="1515456267050" duration="1259000" />
+      <workItem from="1515456267050" duration="2207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6408000" />
+    <option name="totallyTimeSpent" value="7356000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="40" y="62" width="1400" height="795" extended-state="0" />
+    <frame x="40" y="38" width="1400" height="795" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -732,8 +736,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logstash/logstash.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        <state relative-caret-position="240">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
           <folding />
         </state>
       </provider>

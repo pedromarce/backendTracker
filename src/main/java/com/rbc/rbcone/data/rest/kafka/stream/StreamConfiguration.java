@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@DependsOn({"AccountViewStoreStream"})
+@DependsOn({"ElasticSearchIndexStream"})
 public class StreamConfiguration {
 
     private KafkaPropertiesConfig kafkaPropertiesConfig;

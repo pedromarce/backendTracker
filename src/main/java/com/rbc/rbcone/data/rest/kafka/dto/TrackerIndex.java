@@ -13,7 +13,9 @@ import lombok.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TrackerIndex {
 
-    private String entity;
+    private String id;
+
+    private String entity_id;
 
     private String entity_name;
 

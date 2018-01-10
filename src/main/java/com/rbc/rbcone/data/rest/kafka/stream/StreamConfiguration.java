@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@DependsOn({"TestFirebaseStream"})
+@DependsOn({"TestFirebaseStream", "ElasticSearchIndex"})
 public class StreamConfiguration {
 
     private KafkaPropertiesConfig kafkaPropertiesConfig;
@@ -27,7 +27,15 @@ public class StreamConfiguration {
         Topology topology = streamsBuilder.build();
 
         KafkaStreams streams = new KafkaStreams(topology, kafkaPropertiesConfig.getConfig());
+
         streams.start();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                streams.close();
+            }
+        }));
     }
 
 }

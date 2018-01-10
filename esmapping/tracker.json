@@ -9,7 +9,7 @@
   }
 },
   "mappings": {
-    "tracker": {
+    "doc": {
       "properties": {
         "@timestamp": {
           "type": "date"

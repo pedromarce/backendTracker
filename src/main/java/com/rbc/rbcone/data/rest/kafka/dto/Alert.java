@@ -15,13 +15,15 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Alert {
 
-    private String entity;
+    private String id;
 
-    private String entityId;
+    private String entity_name;
 
-    private String entityCategory;
+    private String entity_id;
 
-    private String eventCategory;
+    private String entity_category;
+
+    private String event_category;
 
     private String message;
 

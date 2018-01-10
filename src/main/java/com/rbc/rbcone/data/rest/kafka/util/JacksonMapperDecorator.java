@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.Map;
 
 public final class JacksonMapperDecorator {
 
@@ -29,6 +30,10 @@ public final class JacksonMapperDecorator {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Map<String, Object> writeAsMap(Object value) {
+        return mapper.convertValue(value, Map.class);
     }
 
 }

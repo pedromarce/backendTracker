@@ -29,7 +29,8 @@ public class Dealer {
 
     public static TrackerIndex mapTrackerIndex (final Dealer dealer) {
         return TrackerIndex.builder()
-                .entity(dealer.dealer_id)
+                .id(dealer.region_id + "_" + dealer.dealer_id)
+                .entity_id(dealer.dealer_id)
                 .entity_name(dealer.dealer_name)
                 .entity_category("dealer").build();
     }

@@ -26,10 +26,11 @@ public class Account {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Account>() {});
     }
 
-    public static TrackerIndex mapTrackerIndex (final Account Account) {
+    public static TrackerIndex mapTrackerIndex (final Account account) {
         return TrackerIndex.builder()
-                .entity(Account.account_number)
-                .entity_name(Account.account_name)
+                .id(account.region_id + "_" + account.account_number)
+                .entity_id(account.account_number)
+                .entity_name(account.account_name)
                 .entity_category("Account").build();
     }
 

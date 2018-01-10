@@ -3,6 +3,11 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../InvestTracker/src/app/app.module.ts">
           <value>
             <set />
@@ -13,12 +18,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../InvestTracker/src/providers/elasticsearch/elasticsearch.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../InvestTracker/src/providers/firebase/firebase.ts">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/replica_dealer-new.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/esmapping/account.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/esmapping/tracker.json">
           <value>
             <set />
           </value>
@@ -38,7 +58,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Alert.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Dealer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java">
           <value>
             <set />
           </value>
@@ -54,6 +94,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/AccountViewStoreStream.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java">
           <value>
             <set />
           </value>

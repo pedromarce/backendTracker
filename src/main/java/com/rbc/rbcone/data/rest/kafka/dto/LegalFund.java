@@ -27,23 +27,25 @@ public class LegalFund {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<LegalFund>() {});
     }
 
-    public static Alert mapNewLegalFundAlert (final LegalFund LegalFund) {
+    public static Alert mapNewLegalFundAlert (final LegalFund legalFund) {
         return Alert.builder()
-                .entity(LegalFund.legal_fund_name)
-                .entityId(LegalFund.legal_fund_id)
-                .entityCategory("legal_fund")
-                .eventCategory("new_legal_fund")
+                .id(legalFund.region_id + "_" + legalFund.legal_fund_id)
+                .entity_name(legalFund.legal_fund_name)
+                .entity_id(legalFund.legal_fund_id)
+                .entity_category("legal_fund")
+                .event_category("new_legal_fund")
                 .message("New Legal Fund "
-                        + " create with code " + LegalFund.legal_fund_id
-                        + " and name " + LegalFund.legal_fund_name
+                        + " create with code " + legalFund.legal_fund_id
+                        + " and name " + legalFund.legal_fund_name
                         + ".")
                 .timestamp(new Date()).build();
     }
 
-    public static TrackerIndex mapTrackerIndex (final LegalFund LegalFund) {
+    public static TrackerIndex mapTrackerIndex (final LegalFund legalFund) {
         return TrackerIndex.builder()
-                .entity(LegalFund.legal_fund_id)
-                .entity_name(LegalFund.legal_fund_name)
+                .id(legalFund.region_id + "_" + legalFund.legal_fund_id)
+                .entity_id(legalFund.legal_fund_id)
+                .entity_name(legalFund.legal_fund_name)
                 .entity_category("legal_fund").build();
     }
 

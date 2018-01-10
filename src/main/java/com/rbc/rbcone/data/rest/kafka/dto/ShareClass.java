@@ -34,14 +34,31 @@ public class ShareClass {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<ShareClass>() {});
     }
 
+    public static Alert mapLiquidatedShareClassAlert (final ShareClass shareClass) {
+        return Alert.builder()
+                .id(shareClass.region_id + "_" + shareClass.share_class_id)
+                .entity_name(shareClass.share_class_name)
+                .entity_id(shareClass.share_class_id)
+                .entity_category("share_class")
+                .event_category("liquidated_share_class")
+                .message("Share Class " + shareClass.share_class_id
+                        + " with code " + shareClass.share_class_code
+                        + " and name " + shareClass.share_class_name
+                        + " for fund " + shareClass.legal_fund_id
+                        + " has been liquidated.")
+                .timestamp(new Date()).build();
+    }
+
+
     public static Alert mapNewShareClassAlert (final ShareClass shareClass) {
         return Alert.builder()
-                .entity(shareClass.share_class_name)
-                .entityId(shareClass.share_class_id)
-                .entityCategory("share_class")
-                .eventCategory("new_share_class")
-                .message("New Share " + shareClass.share_class_id
-                        + " create with code " + shareClass.share_class_code
+                .id(shareClass.region_id + "_" + shareClass.share_class_id)
+                .entity_name(shareClass.share_class_name)
+                .entity_id(shareClass.share_class_id)
+                .entity_category("share_class")
+                .event_category("new_share_class")
+                .message("New Share Class " + shareClass.share_class_id
+                        + " created with code " + shareClass.share_class_code
                         + " and name " + shareClass.share_class_name
                         + " for fund " + shareClass.legal_fund_id
                         + ".")
@@ -50,7 +67,8 @@ public class ShareClass {
 
     public static TrackerIndex mapTrackerIndex (final ShareClass shareClass) {
         return TrackerIndex.builder()
-                .entity(shareClass.share_class_id)
+                .id(shareClass.region_id + "_" + shareClass.share_class_id)
+                .entity_id(shareClass.share_class_id)
                 .entity_name(shareClass.share_class_name)
                 .entity_category("share_class").build();
     }

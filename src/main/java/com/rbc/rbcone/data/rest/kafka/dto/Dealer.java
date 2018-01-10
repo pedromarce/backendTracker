@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import lombok.*;
 
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -26,6 +28,17 @@ public class Dealer {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Dealer>() {});
     }
 
+    public static Alert mapBalanceDealerAlert (final Dealer dealer ) {
+        return Alert.builder()
+                .id(dealer.region_id + "_" + dealer.dealer_id)
+                .entity_name(dealer.dealer_name)
+                .entity_id(dealer.dealer_id)
+                .entity_category("dealer")
+                .event_category("dealer_balance")
+                .message("Balance for dealer " + dealer.dealer_id
+                        + ".")
+                .timestamp(new Date()).build();
+    }
 
     public static TrackerIndex mapTrackerIndex (final Dealer dealer) {
         return TrackerIndex.builder()

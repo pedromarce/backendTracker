@@ -64,6 +64,77 @@ public class Holding {
                 .timestamp(new Date()).build();
     }
 
+    public static Alert mapInactiveHoldingShareClassAlert (final Holding holding) {
+        return Alert.builder()
+                .id(holding.region_id + "_" + holding.share_class_id)
+                .entity_name(holding.share_class_id)
+                .entity_id(holding.share_class_id)
+                .entity_category("share_class")
+                .event_category("holding_inactive")
+                .message("Holding for Account " + holding.account_number
+                        + " in share class " + holding.share_class_id
+                        + " has been inactive due to " + holding.blocking_reason_code
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
+    public static Alert mapInactiveHoldingAccountAlert (final Holding holding) {
+        return Alert.builder()
+                .id(holding.region_id + "_" + holding.account_number)
+                .entity_name(holding.account_number)
+                .entity_id(holding.account_number)
+                .entity_category("account")
+                .event_category("holding_inactive")
+                .message("Holding for Account " + holding.account_number
+                        + " in share class " + holding.share_class_id
+                        + " has been inactive due to " + holding.blocking_reason_code
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
+    public static Alert mapBalanceHoldingAccountAlert (final Holding holding) {
+        return Alert.builder()
+                .id(holding.region_id + "_" + holding.account_number)
+                .entity_name(holding.account_number)
+                .entity_id(holding.account_number)
+                .entity_category("account")
+                .event_category("holding_balance")
+                .message("Holding for Account " + holding.account_number
+                        + " in share class " + holding.share_class_id
+                        + " is " + holding.quantity
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
+    public static Alert mapBalanceHoldingClassAlert (final Holding holding) {
+        return Alert.builder()
+                .id(holding.region_id + "_" + holding.share_class_id)
+                .entity_name(holding.share_class_id)
+                .entity_id(holding.share_class_id)
+                .entity_category("share_class")
+                .event_category("holding_balance")
+                .message("Holding for Account " + holding.account_number
+                        + " in share class " + holding.share_class_id
+                        + " exceeds 50% of the share class"
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
+    public static Alert mapNewHoldingDealerAlert (final Holding holding) {
+        return Alert.builder()
+                .id(holding.region_id + "_" + holding.account_number)  /* add dealer id or substring */
+                .entity_name(holding.account_number)
+                .entity_id(holding.account_number)
+                .entity_category("dealer")
+                .event_category("new_holding")
+                .message("New Holding "
+                        + " created with share class " + holding.share_class_id
+                        + " and account " + holding.account_number
+                        + " for dealer " + holding.account_number
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
     public static Holding mapHolding (final String jsonObject) {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Holding>() {});
     }

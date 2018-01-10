@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import lombok.*;
 
 import java.util.Date;
@@ -47,7 +48,7 @@ public class Holding {
                         + " in account " + holding.account_number
                         + " has been blocked due to " + holding.blocking_reason_code
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     public static Alert mapBlockHoldingAccountAlert (final Holding holding) {
@@ -61,7 +62,7 @@ public class Holding {
                         + " in share class " + holding.share_class_id
                         + " has been blocked due to " + holding.blocking_reason_code
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     public static Holding mapHolding (final String jsonObject) {

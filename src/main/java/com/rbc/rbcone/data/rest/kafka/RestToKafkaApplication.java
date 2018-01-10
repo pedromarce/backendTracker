@@ -6,9 +6,12 @@ import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
+import org.apache.http.message.BasicHeader;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +35,17 @@ public class RestToKafkaApplication {
                                                    @Value("${elasticsearch.protocol}") String protocol) throws Exception {
         return new RestHighLevelClient(RestClient.builder(
                 new HttpHost(serverUrl, port, protocol)));
+    }
+
+    @Bean
+    public RestClient elasticClient(@Value("${elasticsearch.server.url}") String serverUrl,
+                                                   @Value("${elasticsearch.port}") Integer port,
+                                                   @Value("${elasticsearch.protocol}") String protocol) throws Exception {
+        RestClientBuilder builder = RestClient.builder(
+                new HttpHost(serverUrl, port, protocol));
+        Header[] defaultHeaders = new Header[]{new BasicHeader("Authorization", "Basic ZWxhc3RpYzpvSFVkM1k5aDdVWHZXVkxoVzZiS1JkbnU=")};
+        builder.setDefaultHeaders(defaultHeaders);
+        return builder.build();
     }
 
     @Bean

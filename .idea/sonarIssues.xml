@@ -93,6 +93,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/elastic/Hit.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/AccountViewStoreStream.java">
           <value>
             <set />
@@ -118,6 +123,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/JacksonMapperDecorator.java">
           <value>
             <set />
@@ -133,6 +143,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/RandomizeTimeStamp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/resources/application.properties">
           <value>
             <set />
@@ -144,6 +159,26 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/AvroSchemaTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../firestore-query/package.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../firestore-query/query.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../firestore-query/quickstart.js">
           <value>
             <set />
           </value>

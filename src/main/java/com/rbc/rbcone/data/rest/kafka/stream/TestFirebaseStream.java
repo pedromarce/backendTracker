@@ -2,12 +2,14 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.*;
+import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Random;
 
 @Component("TestFirebaseStream")
@@ -17,12 +19,12 @@ public class TestFirebaseStream {
 
     private Firestore firestore;
 
-    private RestHighLevelClient restHighLevelClient;
+    private ElasticSearchService elasticSearchService;
 
-    public TestFirebaseStream(StreamsBuilder streamsBuilder, Firestore firestore, RestHighLevelClient restHighLevelClient) {
+    public TestFirebaseStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
         this.streamsBuilder = streamsBuilder;
         this.firestore = firestore;
-        this.restHighLevelClient = restHighLevelClient;
+        this.elasticSearchService = elasticSearchService;
         buildFirebaseViewStoreStreams();
     }
 
@@ -62,12 +64,16 @@ public class TestFirebaseStream {
 
     private ShareClass sendShareClassAlerts(final ShareClass shareClass) {
         Random random = new Random();
-        if (random.nextInt(5) == 1) {
-            firestore.collection("alerts").add(ShareClass.mapNewShareClassAlert(shareClass));
-            System.out.println("Sent alert");
+        try {
+            if (!elasticSearchService.isAvailable("replica_shareclass",shareClass.getRegion_id() + "_" + shareClass.getShare_class_id())) {
+                firestore.collection("alerts_test").add(ShareClass.mapNewShareClassAlert(shareClass));
+                System.out.println("Sent alert");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        if (shareClass.getIs_liquidated() && random.nextInt(3) == 1) {
-            firestore.collection("alerts").add(ShareClass.mapLiquidatedShareClassAlert(shareClass));
+        if (shareClass.getIs_liquidated() && random.nextInt(5) == 1) {
+            firestore.collection("alerts_test").add(ShareClass.mapLiquidatedShareClassAlert(shareClass));
             System.out.println("Sent alert");
         }
         return shareClass;
@@ -75,8 +81,8 @@ public class TestFirebaseStream {
 
     private LegalFund sendLegalFundAlerts(final LegalFund legalFund) {
         Random random = new Random();
-        if (random.nextInt(3) == 1) {
-            firestore.collection("alerts").add(LegalFund.mapNewLegalFundAlert(legalFund));
+        if (random.nextInt(10) == 1) {
+            firestore.collection("alerts_test").add(LegalFund.mapNewLegalFundAlert(legalFund));
             System.out.println("Sent alert");
         }
         return legalFund;
@@ -84,9 +90,9 @@ public class TestFirebaseStream {
 
     private Holding sendHoldingAlerts(final Holding holding) {
         Random random = new Random();
-        if (holding.getIs_blocked() && random.nextInt(3) == 1) {
-            firestore.collection("alerts").add(Holding.mapBlockHoldingShareClassAlert(holding));
-            firestore.collection("alerts").add(Holding.mapBlockHoldingAccountAlert(holding));
+        if (holding.getIs_blocked() && random.nextInt(5) == 1) {
+            firestore.collection("alerts_test").add(Holding.mapBlockHoldingShareClassAlert(holding));
+            firestore.collection("alerts_test").add(Holding.mapBlockHoldingAccountAlert(holding));
             System.out.println("Sent alert");
         }
         return holding;

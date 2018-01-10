@@ -3,6 +3,7 @@ package com.rbc.rbcone.data.rest.kafka.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import lombok.*;
 
 import java.util.Date;
@@ -38,7 +39,7 @@ public class LegalFund {
                         + " create with code " + legalFund.legal_fund_id
                         + " and name " + legalFund.legal_fund_name
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     public static TrackerIndex mapTrackerIndex (final LegalFund legalFund) {

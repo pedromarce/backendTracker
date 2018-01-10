@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff3631e5-ca18-49b2-8a09-65b80ad6be97" name="Default" comment="Add some alerts">
-      <change beforePath="" afterPath="$PROJECT_DIR$/data/replica_dealer-new.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/data/replica_legalfund-new.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+    <list default="true" id="ff3631e5-ca18-49b2-8a09-65b80ad6be97" name="Default" comment="Add elastic client">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/elastic/Hit.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/RandomizeTimeStamp.java" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarIssues.xml" afterPath="$PROJECT_DIR$/.idea/sonarIssues.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/3/239c838e001d5ca8aa6fb29ef7c32ac52d747be1" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/4/242a75a29a46921c2103b45a4d0c5f8a40fb3dfb" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/3/33298b52dcab537e00972a4ac787a5ca28e8510d" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/9/89417e847ae471ba3cf6591a1bd9784924f0c37f" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/4/d471bb45cf7b37a8c4baf4b1918edd888b8a015b" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/esmapping/tracker.json" afterPath="$PROJECT_DIR$/esmapping/tracker.json" />
+      <change beforePath="$PROJECT_DIR$/backendTracker.iml" afterPath="$PROJECT_DIR$/backendTracker.iml" />
       <change beforePath="$PROJECT_DIR$/logstash/logstash.conf" afterPath="$PROJECT_DIR$/logstash/logstash.conf" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Alert.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Alert.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Dealer.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Dealer.java" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/TrackerIndex.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/TrackerIndex.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/JacksonMapperDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/JacksonMapperDecorator.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaPropertiesConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaPropertiesConfig.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestFirebaseStream.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestFirebaseStream.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="68" column="69" lean-forward="true" selection-start-line="68" selection-start-column="69" selection-end-line="68" selection-end-column="69" />
+            <state relative-caret-position="121">
+              <caret line="67" column="26" lean-forward="true" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,31 +49,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logstash.conf" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/logstash/logstash.conf">
+      <file leaf-file-name="RestToKafkaApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="87">
+              <caret line="45" column="132" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="132" />
+              <folding>
+                <element signature="e#1226#1249#1" expanded="true" />
+                <element signature="e#1566#1595#1" expanded="true" />
+                <element signature="e#1673#1696#1" expanded="true" />
+                <element signature="e#1770#1797#1" expanded="true" />
+                <element signature="e#2720#2721#0" expanded="true" />
+                <element signature="e#2787#2788#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="replica_account.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/replica_account.json">
+      <file leaf-file-name="RestToKafkaApplicationTests.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="replica_holding.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/replica_holding.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5090">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,28 +79,33 @@
       <file leaf-file-name="ShareClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+            <state relative-caret-position="129">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LegalFund.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java">
+      <file leaf-file-name="RunAfterTestMethodCallbacks.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.3.11.RELEASE/spring-test-4.3.11.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunAfterTestMethodCallbacks.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="189">
+              <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+              <folding>
+                <marker date="1506542576000" expanded="false" signature="0:104" ph="/.../" />
+                <marker date="1506542576000" expanded="false" signature="174:386" ph="..." />
+                <marker date="1506542576000" expanded="true" signature="751:918" ph="{...}" />
+                <marker date="1506542576000" expanded="true" signature="964:1462" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KafkaPropertiesConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaPropertiesConfig.java">
+      <file leaf-file-name="ElasticSearchService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="16" column="80" lean-forward="false" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+            <state relative-caret-position="111">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -108,32 +113,106 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElasticSearchIndex.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java">
+      <file leaf-file-name="RestClient.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/elasticsearch/client/elasticsearch-rest-client/6.1.1/elasticsearch-rest-client-6.1.1.jar!/org/elasticsearch/client/RestClient.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+            <state relative-caret-position="143">
+              <caret line="301" column="0" lean-forward="false" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Account.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java">
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+            <state relative-caret-position="45">
+              <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Holding.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java">
+      <file leaf-file-name="ProcessorContextImpl.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/processor/internals/ProcessorContextImpl.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="60" column="69" lean-forward="false" selection-start-line="60" selection-start-column="69" selection-end-line="60" selection-end-column="69" />
-              <folding />
+            <state relative-caret-position="126">
+              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <folding>
+                <marker date="1515496460320" expanded="false" signature="0:104" ph="/.../" />
+                <marker date="1515496460320" expanded="false" signature="168:758" ph="..." />
+                <marker date="1515496460320" expanded="true" signature="1107:1251" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="1299:1310" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="1358:1364" ph=" }" />
+                <marker date="1515496460320" expanded="false" signature="1410:1421" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="1443:1449" ph=" }" />
+                <marker date="1515496460320" expanded="true" signature="1500:2095" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="2144:2569" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="2634:2958" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="3025:3533" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="3559:3570" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="3593:3599" ph=" }" />
+                <marker date="1515496460320" expanded="true" signature="3691:3759" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="3765:3783" ph="/**...*/" />
+                <marker date="1515496460320" expanded="true" signature="3840:4095" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="3903:3973" ph="punctuate(timestamp) → {" />
+                <marker date="1515496460320" expanded="false" signature="4072:4087" ph="}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StreamTask.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/processor/internals/StreamTask.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+              <folding>
+                <marker date="1515496460320" expanded="false" signature="0:104" ph="/.../" />
+                <marker date="1515496460320" expanded="false" signature="168:1752" ph="..." />
+                <marker date="1515496460320" expanded="true" signature="3025:4979" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="5013:5262" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="5289:5645" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="5676:7135" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="7244:8238" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="8326:8536" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="8562:8573" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="8591:8597" ph=" }" />
+                <marker date="1515496460320" expanded="true" signature="8650:9183" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="8747:8795" ph="run() → {" />
+                <marker date="1515496460320" expanded="false" signature="9087:9102" ph="}" />
+                <marker date="1515496460320" expanded="false" signature="9249:9260" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="9298:9304" ph=" }" />
+                <marker date="1515496460320" expanded="true" signature="9338:9601" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="9663:11375" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="11409:11888" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="11916:11989" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="12023:12124" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="12159:12926" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="13025:14295" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="14356:14467" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="14524:14925" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="15029:15546" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="15640:16331" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="16354:16365" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="16406:16412" ph=" }" />
+                <marker date="1515496460320" expanded="true" signature="16460:16659" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="16707:16876" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="17007:17092" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="17115:17126" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="17154:17160" ph=" }" />
+                <marker date="1515496460320" expanded="false" signature="17195:17206" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="17234:17240" ph=" }" />
+                <marker date="1515496460320" expanded="false" signature="17281:17292" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="17321:17327" ph=" }" />
+                <marker date="1515496460320" expanded="false" signature="17366:17377" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="17405:17411" ph=" }" />
+                <marker date="1515496460320" expanded="true" signature="17478:17572" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="17606:18121" ph="{...}" />
+                <marker date="1515496460320" expanded="true" signature="17738:18004" ph="{...}" />
+                <marker date="1515496460320" expanded="false" signature="18037:18052" ph=" { " />
+                <marker date="1515496460320" expanded="false" signature="18105:18115" ph=" }" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,6 +233,8 @@
       <find>9200</find>
       <find>//</find>
       <find>$PROJECT_DIR$</find>
+      <find>Hackathon.js</find>
+      <find>elastic</find>
     </findStrings>
     <replaceStrings>
       <replace>/</replace>
@@ -176,24 +257,28 @@
         <option value="$PROJECT_DIR$/src/main/resources/firebase.json" />
         <option value="$PROJECT_DIR$/src/test/java/AvroSchemaTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/SaraEventMasterStream.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/AccountViewStoreStream.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/JacksonMapperDecorator.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java" />
         <option value="$PROJECT_DIR$/esmapping/tracker.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/TrackerIndex.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Alert.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Dealer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaPropertiesConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/RandomizeTimeStamp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java" />
         <option value="$PROJECT_DIR$/logstash/logstash.conf" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/elastic/Hit.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java" />
       </list>
     </option>
   </component>
@@ -228,7 +313,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="62" />
-    <option name="y" value="72" />
+    <option name="y" value="71" />
     <option name="width" value="1378" />
     <option name="height" value="795" />
   </component>
@@ -249,7 +334,9 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -314,6 +401,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kafka" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+              <item name="elastic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backendTracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backendTracker" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka" type="462c0819:PsiDirectoryNode" />
               <item name="stream" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -368,8 +465,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -405,7 +500,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.RestToKafkaApplication">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -425,6 +520,31 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+    </configuration>
+    <configuration name="RestToKafkaApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.rbc.rbcone.data.rest.kafka.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="backendTracker" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.rbc.rbcone.data.rest.kafka" />
+      <option name="MAIN_CLASS_NAME" value="com.rbc.rbcone.data.rest.kafka.RestToKafkaApplicationTests" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -504,6 +624,15 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Spring Boot.RestToKafkaApplication" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.RestToKafkaApplicationTests" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.RestToKafkaApplicationTests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -521,15 +650,26 @@
       <workItem from="1515423261718" duration="1778000" />
       <workItem from="1515427718344" duration="3371000" />
       <workItem from="1515456267050" duration="16198000" />
+      <workItem from="1515583390328" duration="8571000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="RestToKafkaApplicationTests - 2018.01.10 at 15h 58m 03s.xml">
+      <configuration name="RestToKafkaApplicationTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RestToKafkaApplicationTests - 2018.01.10 at 16h 02m 28s.xml">
+      <configuration name="RestToKafkaApplicationTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RestToKafkaApplicationTests - 2018.01.10 at 16h 03m 32s.xml">
+      <configuration name="RestToKafkaApplicationTests" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26287000" />
+    <option name="totallyTimeSpent" value="36117000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="62" y="72" width="1378" height="795" extended-state="0" />
-    <editor active="true" />
+    <frame x="62" y="71" width="1378" height="795" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -541,7 +681,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3988183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5184638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -550,10 +690,10 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25748503" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26122755" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -561,41 +701,12 @@
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SonarQube" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3988183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25748503" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,59 +717,40 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add some alerts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add some alerts" />
+    <MESSAGE value="Add elastic client" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add elastic client" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java</url>
-          <line>54</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java</url>
+          <line>67</line>
           <properties />
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>this.nextHost()</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>org.elasticsearch.client.RestClient</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="21" lean-forward="false" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/mapper/ShareClassFundLinkMapper.java" />
-    <entry file="file://$PROJECT_DIR$/logstash/logstash.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/esmapping/tracker.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/mapper/ShareClassFundLinkMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/mapper/DealerMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/domain/AccountDao.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/controller/DeployController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/controller/KafkaRestController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/KafkaMessagesBody.java" />
@@ -683,14 +775,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/AvroSchemaTest.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
-          <caret line="33" column="26" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.11.RELEASE/spring-core-4.3.11.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -706,36 +790,232 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="12" column="54" lean-forward="false" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-          <folding>
-            <element signature="e#1168#1169#0" expanded="false" />
-            <element signature="e#1215#1216#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/processor/internals/StreamTask.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/processor/internals/AssignedTasks.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="410" column="0" lean-forward="false" selection-start-line="410" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/JacksonMapperDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="35" column="53" lean-forward="false" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+          <folding>
+            <element signature="e#1051#1052#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/kstream/internals/KStreamMapValues.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaProducerInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="80" lean-forward="false" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/elasticsearch/client/elasticsearch-rest-client/6.1.1/elasticsearch-rest-client-6.1.1.jar!/org/elasticsearch/client/RestClientBuilder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esmapping/tracker.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/TrackerIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Dealer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="31" column="61" lean-forward="false" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Trade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-61">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/replica_dealer-new.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-158">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/replica_legalfund-new.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/replica_account.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/replica_holding.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaPropertiesConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="16" column="80" lean-forward="false" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/test-sara-event.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Alert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="41" column="57" lean-forward="false" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logstash/logstash.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1082">
+          <caret line="131" column="27" lean-forward="false" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/RandomizeTimeStamp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/StreamConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="15" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/elastic/Hit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <marker date="1495013496000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1495013496000" expanded="true" signature="277:284" ph="{}" />
+            <marker date="1495013496000" expanded="true" signature="327:499" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.3.11.RELEASE/spring-test-4.3.11.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunAfterTestMethodCallbacks.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding>
+            <marker date="1506542576000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1506542576000" expanded="false" signature="174:386" ph="..." />
+            <marker date="1506542576000" expanded="true" signature="751:918" ph="{...}" />
+            <marker date="1506542576000" expanded="true" signature="964:1462" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -766,149 +1046,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/JacksonMapperDecorator.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/processor/internals/StreamTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="35" column="53" lean-forward="false" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
-          <folding>
-            <element signature="e#1051#1052#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-streams/1.0.0/kafka-streams-1.0.0.jar!/org/apache/kafka/streams/kstream/internals/KStreamMapValues.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding>
             <marker date="1515496460320" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1515496460320" expanded="false" signature="166:386" ph="..." />
-            <marker date="1515496460320" expanded="false" signature="558:569" ph=" { " />
-            <marker date="1515496460320" expanded="false" signature="590:596" ph=" }" />
-            <marker date="1515496460320" expanded="false" signature="630:641" ph=" { " />
-            <marker date="1515496460320" expanded="false" signature="691:697" ph=" }" />
-            <marker date="1515496460320" expanded="true" signature="769:1003" ph="{...}" />
-            <marker date="1515496460320" expanded="true" signature="809:820" ph="{}" />
-            <marker date="1515496460320" expanded="true" signature="866:997" ph="{...}" />
+            <marker date="1515496460320" expanded="false" signature="168:1752" ph="..." />
+            <marker date="1515496460320" expanded="true" signature="3025:4979" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="5013:5262" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="5289:5645" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="5676:7135" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="7244:8238" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="8326:8536" ph="{...}" />
+            <marker date="1515496460320" expanded="false" signature="8562:8573" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="8591:8597" ph=" }" />
+            <marker date="1515496460320" expanded="true" signature="8650:9183" ph="{...}" />
+            <marker date="1515496460320" expanded="false" signature="8747:8795" ph="run() → {" />
+            <marker date="1515496460320" expanded="false" signature="9087:9102" ph="}" />
+            <marker date="1515496460320" expanded="false" signature="9249:9260" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="9298:9304" ph=" }" />
+            <marker date="1515496460320" expanded="true" signature="9338:9601" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="9663:11375" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="11409:11888" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="11916:11989" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="12023:12124" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="12159:12926" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="13025:14295" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="14356:14467" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="14524:14925" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="15029:15546" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="15640:16331" ph="{...}" />
+            <marker date="1515496460320" expanded="false" signature="16354:16365" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="16406:16412" ph=" }" />
+            <marker date="1515496460320" expanded="true" signature="16460:16659" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="16707:16876" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="17007:17092" ph="{...}" />
+            <marker date="1515496460320" expanded="false" signature="17115:17126" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="17154:17160" ph=" }" />
+            <marker date="1515496460320" expanded="false" signature="17195:17206" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="17234:17240" ph=" }" />
+            <marker date="1515496460320" expanded="false" signature="17281:17292" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="17321:17327" ph=" }" />
+            <marker date="1515496460320" expanded="false" signature="17366:17377" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="17405:17411" ph=" }" />
+            <marker date="1515496460320" expanded="true" signature="17478:17572" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="17606:18121" ph="{...}" />
+            <marker date="1515496460320" expanded="true" signature="17738:18004" ph="{...}" />
+            <marker date="1515496460320" expanded="false" signature="18037:18052" ph=" { " />
+            <marker date="1515496460320" expanded="false" signature="18105:18115" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaProducerInstance.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="80" lean-forward="false" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+        <state relative-caret-position="129">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="45" column="132" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="132" />
+          <folding>
+            <element signature="e#1226#1249#1" expanded="true" />
+            <element signature="e#1566#1595#1" expanded="true" />
+            <element signature="e#1673#1696#1" expanded="true" />
+            <element signature="e#1770#1797#1" expanded="true" />
+            <element signature="e#2720#2721#0" expanded="true" />
+            <element signature="e#2787#2788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/elasticsearch/client/elasticsearch-rest-client/6.1.1/elasticsearch-rest-client-6.1.1.jar!/org/elasticsearch/client/RestClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="301" column="0" lean-forward="false" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="45">
+          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/elasticsearch/client/elasticsearch-rest-client/6.1.1/elasticsearch-rest-client-6.1.1.jar!/org/elasticsearch/client/RestClientBuilder.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/esmapping/tracker.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/TrackerIndex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Alert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Dealer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="31" column="61" lean-forward="false" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Trade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/replica_dealer-new.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-158">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/replica_legalfund-new.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/ElasticSearchIndex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/replica_account.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/replica_holding.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5090">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/util/KafkaPropertiesConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="16" column="80" lean-forward="false" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+        <state relative-caret-position="111">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -917,43 +1158,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/stream/TestFirebaseStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="68" column="69" lean-forward="true" selection-start-line="68" selection-start-column="69" selection-end-line="68" selection-end-column="69" />
+        <state relative-caret-position="121">
+          <caret line="67" column="26" lean-forward="true" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/ShareClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/LegalFund.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Holding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="60" column="69" lean-forward="false" selection-start-line="60" selection-start-column="69" selection-end-line="60" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logstash/logstash.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

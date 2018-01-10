@@ -67,6 +67,20 @@ public class ShareClass {
                 .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
+    public static Alert mapBalanceShareClassLegalFundAlert (final ShareClass shareClass) {
+        return Alert.builder()
+                .id(shareClass.region_id + "_" + shareClass.legal_fund_id)
+                .entity_name(shareClass.legal_fund_id)
+                .entity_id(shareClass.legal_fund_id)
+                .entity_category("legal_fund")
+                .event_category("share_class_balance")
+                .message("Balance for shareClass " + shareClass.share_class_id
+                        + " in legal fund " + shareClass.legal_fund_id
+                        + " exceeds 30% of the legal fund"
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
     public static TrackerIndex mapTrackerIndex (final ShareClass shareClass) {
         return TrackerIndex.builder()
                 .id(shareClass.region_id + "_" + shareClass.share_class_id)

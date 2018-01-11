@@ -1,43 +1,30 @@
 package com.rbc.rbcone.data.rest.kafka.util;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.rbc.rbcone.data.rest.kafka.dto.elastic.Hit;
-import org.apache.http.Header;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.util.EntityUtils;
-import org.elasticsearch.client.Response;
-import org.elasticsearch.client.RestClient;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class ElasticSearchService {
 
     @Autowired
-    RestClient elasticClient;
-
-    private Map<String, String> params;
-    private Header[] headers;
-
-
-    ElasticSearchService () {
-        params = new HashMap<>();
-        params.put("pretty", "true");
-        headers = new Header[]{new BasicHeader("Authorization", "Basic ZWxhc3RpYzpvSFVkM1k5aDdVWHZXVkxoVzZiS1JkbnU=")};
-    }
+    RestHighLevelClient highElasticClient;
 
     public boolean isAvailable (String index, String id) throws IOException {
+        return highElasticClient.exists(new GetRequest(index,"doc",id));
+    }
 
+    public String findOneById (String index, String id) throws IOException {
+        return highElasticClient.get(new GetRequest(index,"doc",id)).getSourceAsString();
+    }
 
-        Response response = elasticClient.performRequest("GET", "/" + index + "/doc/" + id, params, headers);
-        Hit hit = JacksonMapperDecorator.readValue(EntityUtils.toString(response.getEntity()), new TypeReference<Hit>() {
-        });
-        return hit.isFound();
+    public IndexResponse index (String index, String id, String source) throws IOException {
+        return highElasticClient.index(new IndexRequest(index, "doc", id).source(source));
     }
 
 

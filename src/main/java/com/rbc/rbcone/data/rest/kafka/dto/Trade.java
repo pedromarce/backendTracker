@@ -3,6 +3,7 @@ package com.rbc.rbcone.data.rest.kafka.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import lombok.*;
 
@@ -36,69 +37,15 @@ public class Trade {
 
     private String trade_currency;
 
-    public static Alert mapNewTradeOverAmountAlert (final Trade trade) {
-        return Alert.builder()
-                .id(trade.region_id + "_" + trade.trade_id)
-                .entity_name(trade.trade_id)
-                .entity_id(trade.trade_id)
-                .entity_category("trade")
-                .event_category("trade_amount")
-                .message("Trade for Account " + trade.account_number
-                        + " in share class " + trade.share_class_id
-                        + " with id " + trade.trade_id
-                        + " amount " + trade.settlement_amount
-                        + ".")
-                .timestamp(new Date()).build();
+    public String getId() {
+        return region_id + "_" + trade_id;
     }
-
-    public static Alert mapNewTradeOverQuantityAlert (final Trade trade) {
-        return Alert.builder()
-                .id(trade.region_id + "_" + trade.trade_id)
-                .entity_name(trade.trade_id)
-                .entity_id(trade.trade_id)
-                .entity_category("trade")
-                .event_category("trade_amoubt")
-                .message("Trade for Account " + trade.account_number
-                        + " in share class " + trade.share_class_id
-                        + " with id " + trade.trade_id
-                        + " quantity " + trade.quantity
-                        + ".")
-                .timestamp(new Date()).build();
-    }
-
-    public static Alert mapNewTradeUnderAmountAlert (final Trade trade) {
-        return Alert.builder()
-                .id(trade.region_id + "_" + trade.trade_id)
-                .entity_name(trade.trade_id)
-                .entity_id(trade.trade_id)
-                .entity_category("trade")
-                .event_category("trade_amount")
-                .message("Trade for Account " + trade.account_number
-                        + " in share class " + trade.share_class_id
-                        + " with id " + trade.trade_id
-                        + " amount " + trade.settlement_amount
-                        + ".")
-                .timestamp(new Date()).build();
-    }
-
-    public static Alert mapNewTradeUnderQuantityAlert (final Trade trade) {
-        return Alert.builder()
-                .id(trade.region_id + "_" + trade.trade_id)
-                .entity_name(trade.trade_id)
-                .entity_id(trade.trade_id)
-                .entity_category("trade")
-                .event_category("trade_amoubt")
-                .message("Trade for Account " + trade.account_number
-                        + " in share class " + trade.share_class_id
-                        + " with id " + trade.trade_id
-                        + " quantity " + trade.quantity
-                        + ".")
-                .timestamp(new Date()).build();
-    }
-
 
     public static Trade mapTrade (final String jsonObject) {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Trade>() {});
     }
 
+    public String toJson() {
+        return JacksonMapperDecorator.writeValueAsString(this);
+    }
 }

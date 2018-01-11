@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@DependsOn({"TestFirebaseStream"})
+@DependsOn({"AccountStream", "DealerStream", "HoldingStream", "LegalFundStream", "ShareClassStream", "TradeStream"})
 public class StreamConfiguration {
 
     private KafkaPropertiesConfig kafkaPropertiesConfig;

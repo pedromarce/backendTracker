@@ -8,6 +8,11 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.elasticsearch.client.RestClient;
@@ -33,19 +38,20 @@ public class RestToKafkaApplication {
     public RestHighLevelClient restHighLevelClient(@Value("${elasticsearch.server.url}") String serverUrl,
                                                    @Value("${elasticsearch.port}") Integer port,
                                                    @Value("${elasticsearch.protocol}") String protocol) throws Exception {
-        return new RestHighLevelClient(RestClient.builder(
-                new HttpHost(serverUrl, port, protocol)));
-    }
 
-    @Bean
-    public RestClient elasticClient(@Value("${elasticsearch.server.url}") String serverUrl,
-                                                   @Value("${elasticsearch.port}") Integer port,
-                                                   @Value("${elasticsearch.protocol}") String protocol) throws Exception {
-        RestClientBuilder builder = RestClient.builder(
-                new HttpHost(serverUrl, port, protocol));
-        Header[] defaultHeaders = new Header[]{new BasicHeader("Authorization", "Basic ZWxhc3RpYzpvSFVkM1k5aDdVWHZXVkxoVzZiS1JkbnU=")};
-        builder.setDefaultHeaders(defaultHeaders);
-        return builder.build();
+        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(AuthScope.ANY,
+                new UsernamePasswordCredentials("elastic", "oHUd3Y9h7UXvWVLhW6bKRdnu"));
+
+        RestClientBuilder builder = RestClient.builder(new HttpHost(serverUrl, port, protocol))
+                .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
+                    @Override
+                    public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
+                        return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+                    }
+                });
+
+        return new RestHighLevelClient(builder);
     }
 
     @Bean

@@ -25,11 +25,18 @@ public class Account {
 
     private String account_name;
 
+    private String dealer_id;
+
     public String getId() {
         return region_id + "_" + account_number;
     }
 
+    public String getDealer_id() {
+        return region_id + "_" + account_number.substring(0,2);
+    }
+
     public static Account mapAccount (final String jsonObject) {
+        System.out.println("Process Account");
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Account>() {});
     }
 

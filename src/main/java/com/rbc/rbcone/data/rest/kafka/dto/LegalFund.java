@@ -31,6 +31,7 @@ public class LegalFund {
     }
 
     public static LegalFund mapLegalFund (final String jsonObject) {
+        System.out.println("Process LegalFund");
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<LegalFund>() {});
     }
 

@@ -39,11 +39,17 @@ public class Holding {
 
     private String blocking_reason_code;
 
+    private String dealer_id;
+
     public String getId() {
         return region_id + "_" + account_number + "_" + share_class_id;
     }
 
+    public String getDealer_id() {
+        return region_id + "_" + account_number.substring(0,2);
+    }
     public static Holding mapHolding (final String jsonObject) {
+        System.out.println("Process Holding");
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Holding>() {});
     }
 

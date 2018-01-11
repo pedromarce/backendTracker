@@ -38,6 +38,7 @@ public class ShareClass {
     }
 
     public static ShareClass mapShareClass (final String jsonObject) {
+        System.out.println("Process ShareClass");
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<ShareClass>() {});
     }
 

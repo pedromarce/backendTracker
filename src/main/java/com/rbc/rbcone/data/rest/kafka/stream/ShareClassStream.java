@@ -36,13 +36,18 @@ public class ShareClassStream {
 
         shareClassStream
                 .mapValues(ShareClass::mapShareClass)
-                .mapValues(this::indexShareClass)
+                .filter(this::filterNonNull)
                 .mapValues(this::sendShareClassAlerts)
+                .mapValues(this::indexShareClass)
                 .mapValues(ShareClass::mapTrackerIndex)
                 .mapValues(JacksonMapperDecorator::writeValueAsString)
                 .to("tracker_index");
 
    }
+
+    private boolean filterNonNull (String key, ShareClass shareClass) {
+        return shareClass.getRegion_id() != null;
+    }
 
     private ShareClass indexShareClass(ShareClass shareClass) {
         try {
@@ -56,19 +61,20 @@ public class ShareClassStream {
     private ShareClass sendShareClassAlerts(final ShareClass shareClass) {
         try {
             if (!elasticSearchService.isAvailable("replica_shareclass",shareClass.getId())) {
-                firestore.collection("alerts_test").add(mapNewShareClassAlert(shareClass));
-                System.out.println("Sent alert Share Class");
-        if (shareClass.getIs_liquidated()) {
-            if (JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
-                firestore.collection("alerts_test").add(mapLiquidatedShareClassAlert(shareClass));
+                firestore.collection("alerts").add(mapNewShareClassAlert(shareClass));
                 System.out.println("Sent alert Share Class");
             }
-        }
+            else if (shareClass.getIs_liquidated()) {
+                if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
+                    firestore.collection("alerts").add(mapLiquidatedShareClassAlert(shareClass));
+                    System.out.println("Sent alert Share Class");
+                }
+            }
         /*if (sum all holding balance in this share class > 30% sum all share class balance in this legal fund){
             firestore.collection("alerts_test").add(ShareClass.mapBalanceShareClassLegalFundAlert(shareClass));
             System.out.println("Sent alert Share Class");
         }*/
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

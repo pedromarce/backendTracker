@@ -32,6 +32,7 @@ public class Dealer {
     }
 
     public static Dealer mapDealer (final String jsonObject) {
+        System.out.println("Process Dealer");
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Dealer>() {});
     }
 

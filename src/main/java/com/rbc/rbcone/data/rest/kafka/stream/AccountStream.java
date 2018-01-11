@@ -2,6 +2,7 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Account;
+import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -31,11 +32,16 @@ public class AccountStream {
         final KStream<String, String> accountStream = streamsBuilder.stream("replica_account");
         accountStream
                 .mapValues(Account::mapAccount)
+                .filter(this::filterNonNull)
                 .mapValues(this::indexAccount)
                 .mapValues(Account::mapTrackerIndex)
                 .mapValues(JacksonMapperDecorator::writeValueAsString)
                 .to("tracker_index");
 
+    }
+
+    private boolean filterNonNull (String key, Account account) {
+        return account.getRegion_id() != null;
     }
 
     private Account indexAccount(Account account) {

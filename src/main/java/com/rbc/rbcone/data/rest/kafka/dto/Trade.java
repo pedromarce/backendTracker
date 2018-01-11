@@ -38,11 +38,18 @@ public class Trade {
 
     private String trade_currency;
 
+    private String dealer_id;
+
     public String getId() {
         return region_id + "_" + trade_id;
     }
 
+    public String getDealer_id() {
+        return region_id + "_" + account_number.substring(0,2);
+    }
+
     public static Trade mapTrade (final String jsonObject) {
+        System.out.println("Process Trade");
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Trade>() {});
     }
 

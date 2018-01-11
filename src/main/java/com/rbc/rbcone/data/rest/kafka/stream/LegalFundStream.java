@@ -2,6 +2,7 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
+import com.rbc.rbcone.data.rest.kafka.dto.Holding;
 import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
@@ -35,12 +36,18 @@ public class LegalFundStream {
         final KStream<String, String> legalFundStream = streamsBuilder.stream("replica_legalfund");
         legalFundStream
                 .mapValues(LegalFund::mapLegalFund)
-                .mapValues(this::indexLegalFund)
+                .filter(this::filterNonNull)
                 .mapValues(this::sendLegalFundAlerts)
+                .mapValues(this::indexLegalFund)
                 .mapValues(LegalFund::mapTrackerIndex)
                 .mapValues(JacksonMapperDecorator::writeValueAsString)
                 .to("tracker_index");
 
+    }
+
+
+    private boolean filterNonNull (String key, LegalFund legalFund) {
+        return legalFund.getRegion_id() != null;
     }
 
     private LegalFund indexLegalFund(LegalFund legalFund) {
@@ -53,10 +60,13 @@ public class LegalFundStream {
     }
 
     private LegalFund sendLegalFundAlerts(final LegalFund legalFund) {
-        Random random = new Random();
-        if (random.nextInt(10) == 1) {
-            firestore.collection("alerts_test").add(mapNewLegalFundAlert(legalFund));
-            System.out.println("Sent alert Legal Fund");
+        try {
+            if (!elasticSearchService.isAvailable("replica_legalfund",legalFund.getId())) {
+                firestore.collection("alerts").add(mapNewLegalFundAlert(legalFund));
+                System.out.println("Sent alert Legal Fund");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return legalFund;
     }

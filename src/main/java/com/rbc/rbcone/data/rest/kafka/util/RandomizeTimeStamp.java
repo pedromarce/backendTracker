@@ -8,7 +8,7 @@ public class RandomizeTimeStamp {
 
     public static Date getRandom() {
         Calendar now = Calendar.getInstance();
-        now.add(Calendar.SECOND, new Random().nextInt(3600) * -1);
+        now.add(Calendar.SECOND, new Random().nextInt(60 * 60 * 24 * 150) * -1);
         return now.getTime();
     }
 }

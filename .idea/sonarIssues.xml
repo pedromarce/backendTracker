@@ -13,7 +13,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../InvestTracker/src/components/timeline-body/timeline-body.html">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../InvestTracker/src/components/timeline-body/timeline-body.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../InvestTracker/src/pages/entities/entities.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../InvestTracker/src/pages/entities/entities.ts">
           <value>
             <set />
           </value>
@@ -64,6 +79,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_account-new4.json">
           <value>
             <set />
           </value>
@@ -219,6 +239,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../firestore-query/add.js">
           <value>
             <set />
           </value>

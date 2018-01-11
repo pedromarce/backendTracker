@@ -3,6 +3,7 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
 import com.rbc.rbcone.data.rest.kafka.dto.Holding;
+import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
@@ -35,9 +36,14 @@ public class HoldingStream {
         final KStream<String, String> accountStream = streamsBuilder.stream("replica_holding");
         accountStream
                 .mapValues(Holding::mapHolding)
+                .filter(this::filterNonNull)
                 .mapValues(this::indexHolding)
                 .mapValues(this::sendHoldingAlerts);
 
+    }
+
+    private boolean filterNonNull (String key, Holding holding) {
+        return holding.getRegion_id() != null;
     }
 
     private Holding indexHolding(Holding holding) {
@@ -52,17 +58,17 @@ public class HoldingStream {
     private Holding sendHoldingAlerts(final Holding holding) {
         Random random = new Random();
         if (holding.getIs_blocked() && random.nextInt(5) == 1) {
-            firestore.collection("alerts_test").add(mapBlockHoldingShareClassAlert(holding));
-            firestore.collection("alerts_test").add(mapBlockHoldingAccountAlert(holding));
+            firestore.collection("alerts").add(mapBlockHoldingShareClassAlert(holding));
+            firestore.collection("alerts").add(mapBlockHoldingAccountAlert(holding));
             System.out.println("Sent alert Holding");
         }
         if (holding.getIs_inactive() && random.nextInt(3) == 1) {
-            firestore.collection("alerts_test").add(mapInactiveHoldingShareClassAlert(holding));
-            firestore.collection("alerts_test").add(mapInactiveHoldingAccountAlert(holding));
+            firestore.collection("alerts").add(mapInactiveHoldingShareClassAlert(holding));
+            firestore.collection("alerts").add(mapInactiveHoldingAccountAlert(holding));
             System.out.println("Sent alert Holding");
         }
         if (holding.getQuantity() > 100000) {
-            firestore.collection("alerts_test").add(mapBalanceHoldingAccountAlert(holding));
+            firestore.collection("alerts").add(mapBalanceHoldingAccountAlert(holding));
             System.out.println("Sent alert Holding");
         }
         /*if (holding.getQuantity() >  50 % sum all holding balance in this share class){

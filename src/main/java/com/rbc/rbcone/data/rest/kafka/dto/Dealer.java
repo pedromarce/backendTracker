@@ -9,6 +9,7 @@ import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,7 +43,6 @@ public class Dealer {
                 .entity_category("dealer").build();
     }
 
-    public String toJson() {
-        return JacksonMapperDecorator.writeValueAsString(this);
-    }
-}
+    public Map<String, Object> toMap() {
+        return JacksonMapperDecorator.writeAsMap(this);
+    }}

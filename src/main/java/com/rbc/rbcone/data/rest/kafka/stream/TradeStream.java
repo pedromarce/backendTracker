@@ -1,6 +1,7 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
+import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.Trade;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
@@ -8,6 +9,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Date;
 
 @Component("TradeStream")
@@ -31,28 +33,38 @@ public class TradeStream {
         final KStream<String, String> accountStream = streamsBuilder.stream("replica_trade");
         accountStream
                 .mapValues(Trade::mapTrade)
+                .mapValues(this::indexTrade)
                 .mapValues(this::sendTradeAlerts);
 
+    }
+
+    private Trade indexTrade(Trade trade) {
+        try {
+            elasticSearchService.index("replica_legalfund", trade.getId(), trade.toMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return trade;
     }
 
     private Trade sendTradeAlerts(final Trade trade) {
 
         if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 250000) {
-            firestore.collection("alerts").add(mapNewTradeOverAmountAlert(trade));
-            System.out.println("Sent alert");
+            firestore.collection("alerts_test").add(mapNewTradeOverAmountAlert(trade));
+            System.out.println("Sent alert Trade");
         }
         if (trade.getQuantity() != 0 && trade.getQuantity() > 10000) {
-            firestore.collection("alerts").add(mapNewTradeOverQuantityAlert(trade));
-            System.out.println("Sent alert");
+            firestore.collection("alerts_test").add(mapNewTradeOverQuantityAlert(trade));
+            System.out.println("Sent alert Trade");
         }
 
         if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 5000) {
-            firestore.collection("alerts").add(mapNewTradeUnderAmountAlert(trade));
-            System.out.println("Sent alert");
+            firestore.collection("alerts_test").add(mapNewTradeUnderAmountAlert(trade));
+            System.out.println("Sent alert Trade");
         }
         if (trade.getQuantity() != 0 && trade.getQuantity() < 50) {
-            firestore.collection("alerts").add(mapNewTradeUnderQuantityAlert(trade));
-            System.out.println("Sent alert");
+            firestore.collection("alerts_test").add(mapNewTradeUnderQuantityAlert(trade));
+            System.out.println("Sent alert Trade");
         }
         return trade;
     }

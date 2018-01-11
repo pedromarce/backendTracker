@@ -7,6 +7,8 @@ import com.rbc.rbcone.data.rest.kafka.dto.elastic.TrackerIndex;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import lombok.*;
 
+import java.util.Map;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -39,7 +41,7 @@ public class Account {
                 .entity_category("Account").build();
     }
 
-    public String toJson() {
-        return JacksonMapperDecorator.writeValueAsString(this);
+    public Map<String, Object> toMap() {
+        return JacksonMapperDecorator.writeAsMap(this);
     }
 }

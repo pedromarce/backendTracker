@@ -40,7 +40,7 @@ public class AccountStream {
 
     private Account indexAccount(Account account) {
         try {
-            elasticSearchService.index("replica_account", account.getId(), account.toJson());
+            elasticSearchService.index("replica_account", account.getId(), account.toMap());
         } catch (IOException e) {
             e.printStackTrace();
         }

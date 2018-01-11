@@ -3,11 +3,13 @@ package com.rbc.rbcone.data.rest.kafka.util;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Service
 public class ElasticSearchService {
@@ -23,7 +25,7 @@ public class ElasticSearchService {
         return highElasticClient.get(new GetRequest(index,"doc",id)).getSourceAsString();
     }
 
-    public IndexResponse index (String index, String id, String source) throws IOException {
+    public IndexResponse index (String index, String id, Map<String,Object> source) throws IOException {
         return highElasticClient.index(new IndexRequest(index, "doc", id).source(source));
     }
 

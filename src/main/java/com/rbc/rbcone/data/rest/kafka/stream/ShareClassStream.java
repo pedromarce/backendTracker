@@ -2,6 +2,7 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.cloud.firestore.Firestore;
+import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
@@ -35,6 +36,7 @@ public class ShareClassStream {
 
         shareClassStream
                 .mapValues(ShareClass::mapShareClass)
+                .mapValues(this::indexShareClass)
                 .mapValues(this::sendShareClassAlerts)
                 .mapValues(ShareClass::mapTrackerIndex)
                 .mapValues(JacksonMapperDecorator::writeValueAsString)
@@ -42,20 +44,29 @@ public class ShareClassStream {
 
    }
 
+    private ShareClass indexShareClass(ShareClass shareClass) {
+        try {
+            elasticSearchService.index("replica_shareclass", shareClass.getId(), shareClass.toMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return shareClass;
+    }
+
     private ShareClass sendShareClassAlerts(final ShareClass shareClass) {
         try {
             if (!elasticSearchService.isAvailable("replica_shareclass",shareClass.getId())) {
                 firestore.collection("alerts_test").add(mapNewShareClassAlert(shareClass));
-                System.out.println("Sent alert");
+                System.out.println("Sent alert Share Class");
         if (shareClass.getIs_liquidated()) {
             if (JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
                 firestore.collection("alerts_test").add(mapLiquidatedShareClassAlert(shareClass));
-                System.out.println("Sent alert");
+                System.out.println("Sent alert Share Class");
             }
         }
         /*if (sum all holding balance in this share class > 30% sum all share class balance in this legal fund){
-            firestore.collection("alerts").add(ShareClass.mapBalanceShareClassLegalFundAlert(shareClass));
-            System.out.println("Sent alert");
+            firestore.collection("alerts_test").add(ShareClass.mapBalanceShareClassLegalFundAlert(shareClass));
+            System.out.println("Sent alert Share Class");
         }*/
             }
         } catch (IOException e) {

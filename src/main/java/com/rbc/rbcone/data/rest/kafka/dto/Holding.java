@@ -9,6 +9,7 @@ import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,7 +47,7 @@ public class Holding {
         return JacksonMapperDecorator.readValue(jsonObject, new TypeReference<Holding>() {});
     }
 
-    public String toJson() {
-        return JacksonMapperDecorator.writeValueAsString(this);
+    public Map<String, Object> toMap() {
+        return JacksonMapperDecorator.writeAsMap(this);
     }
 }

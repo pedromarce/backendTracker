@@ -1,6 +1,7 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
+import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
 import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
@@ -10,6 +11,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Random;
 
 @Component("LegalFundStream")
@@ -33,6 +35,7 @@ public class LegalFundStream {
         final KStream<String, String> legalFundStream = streamsBuilder.stream("replica_legalfund");
         legalFundStream
                 .mapValues(LegalFund::mapLegalFund)
+                .mapValues(this::indexLegalFund)
                 .mapValues(this::sendLegalFundAlerts)
                 .mapValues(LegalFund::mapTrackerIndex)
                 .mapValues(JacksonMapperDecorator::writeValueAsString)
@@ -40,11 +43,20 @@ public class LegalFundStream {
 
     }
 
+    private LegalFund indexLegalFund(LegalFund legalFund) {
+        try {
+            elasticSearchService.index("replica_legalfund", legalFund.getId(), legalFund.toMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return legalFund;
+    }
+
     private LegalFund sendLegalFundAlerts(final LegalFund legalFund) {
         Random random = new Random();
         if (random.nextInt(10) == 1) {
             firestore.collection("alerts_test").add(mapNewLegalFundAlert(legalFund));
-            System.out.println("Sent alert");
+            System.out.println("Sent alert Legal Fund");
         }
         return legalFund;
     }

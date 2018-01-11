@@ -8,6 +8,8 @@ import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import lombok.*;
 
+import java.util.Map;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -40,7 +42,6 @@ public class LegalFund {
                 .entity_category("legal_fund").build();
     }
 
-    public String toJson() {
-        return JacksonMapperDecorator.writeValueAsString(this);
-    }
-}
+    public Map<String, Object> toMap() {
+        return JacksonMapperDecorator.writeAsMap(this);
+    }}

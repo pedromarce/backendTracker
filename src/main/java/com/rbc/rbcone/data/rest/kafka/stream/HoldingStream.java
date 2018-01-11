@@ -36,8 +36,8 @@ public class HoldingStream {
         accountStream
                 .mapValues(Holding::mapHolding)
                 .filter(this::filterNonNull)
-                .mapValues(this::indexHolding)
-                .mapValues(this::sendHoldingAlerts);
+                .mapValues(this::sendHoldingAlerts)
+                .mapValues(this::indexHolding);
 
     }
 
@@ -190,13 +190,28 @@ public class HoldingStream {
     private Alert mapBalanceHoldingClassAlert (final Holding holding) {
         return Alert.builder()
                 .id(holding.getId())
-                .entity_name(holding.getAccount_number())
-                .entity_id(holding.getAccount_number())
+                .entity_name(holding.getShare_class_id())
+                .entity_id(holding.getShare_class_id())
                 .entity_category("share_class")
                 .event_category("holding_balance")
                 .message("Holding for Account " + holding.getAccount_number()
                         + " in share class " + holding.getShare_class_id()
                         + " exceeds 50% of the share class"
+                        + ".")
+                .timestamp(new Date()).build();
+    }
+
+    private Alert mapBalanceHoldingDealerAlert (final Holding holding) {
+        return Alert.builder()
+                .id(holding.getId())
+                .entity_name(holding.getDealer_id())
+                .entity_id(holding.getDealer_id())
+                .entity_category("dealer")
+                .event_category("holding_balance")
+                .message("Holding for Account " + holding.getAccount_number()
+                        + " in share class " + holding.getShare_class_id()
+                        + " for dealer " + holding.getDealer_id()
+                        + " exceeds 50% of the Dealer"
                         + ".")
                 .timestamp(new Date()).build();
     }

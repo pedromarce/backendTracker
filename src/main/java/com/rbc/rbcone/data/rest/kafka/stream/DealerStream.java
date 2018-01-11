@@ -1,22 +1,16 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
-import com.rbc.rbcone.data.rest.kafka.dto.Account;
 import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
-import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
-import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.index.query.TermQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.Random;
 
 @Component("DealerStream")
 public class DealerStream {
@@ -83,7 +77,7 @@ public class DealerStream {
                 .message("New dealer created " + dealer.getDealer_id()
                         + " with name " + dealer.getDealer_name()
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 }
 

@@ -88,6 +88,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_dealer-new.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_shareclass-new.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java">
           <value>
             <set />

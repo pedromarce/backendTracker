@@ -3,7 +3,6 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Holding;
-import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
@@ -83,14 +82,17 @@ public class HoldingStream {
            {
                // processing new holding - does not exist in repository (elastic)
                if (!elasticSearchService.isAvailable("replica_holding",holding.getId())) {
-                   firestore.collection("alerts_test").add(mapNewHoldingDealerAlert(holding));
+                   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding));
+                   firestore.collection("alerts").add(mapNewHoldingShareClassAlert(holding));
+                   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding));
                    System.out.println("Sent alert New Holding");
-
+               } else {
                //  check blocked holding
                    if (holding.getIs_blocked()) {
                        if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_holding", holding.getId()), new TypeReference<Holding>() {
                        }).getIs_blocked()) {
-                           firestore.collection("alerts_test").add(mapBlockHoldingShareClassAlert(holding));
+                           firestore.collection("alerts").add(mapBlockHoldingShareClassAlert(holding));
+                           firestore.collection("alerts").add(mapBlockHoldingAccountAlert(holding));
                            System.out.println("Sent alert Holding Blocked");
                        }
                    }
@@ -99,14 +101,12 @@ public class HoldingStream {
                    if (holding.getIs_inactive()) {
                        if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_holding", holding.getId()), new TypeReference<Holding>() {
                        }).getIs_inactive()) {
-                           firestore.collection("alerts_test").add(mapBlockHoldingShareClassAlert(holding));
+                           firestore.collection("alerts").add(mapInactiveHoldingAccountAlert(holding));
+                           firestore.collection("alerts").add(mapInactiveHoldingShareClassAlert(holding));
                            System.out.println("Sent alert Holding Inactive");
                        }
                    }
-
-
-
-            }
+               }
         }
           catch (IOException e) {
               e.printStackTrace();
@@ -119,9 +119,9 @@ public class HoldingStream {
 
     private Alert mapBlockHoldingShareClassAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())
-                .entity_name(holding.getAccount_number())
-                .entity_id(holding.getAccount_number())
+                .id(holding.getRegion_id() + "_" + holding.getShare_class_id())
+                .entity_name(holding.getShare_class_id())
+                .entity_id(holding.getShare_class_id())
                 .entity_category("share_class")
                 .event_category("holding_blocked")
                 .message("Holding for Share Class " + holding.getShare_class_id()
@@ -133,7 +133,7 @@ public class HoldingStream {
 
     private Alert mapBlockHoldingAccountAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())
+                .id(holding.getRegion_id() + "_" + holding.getAccount_number())
                 .entity_name(holding.getAccount_number())
                 .entity_id(holding.getAccount_number())
                 .entity_category("account")
@@ -147,21 +147,21 @@ public class HoldingStream {
 
     private Alert mapInactiveHoldingShareClassAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())
-                .entity_name(holding.getAccount_number())
-                .entity_id(holding.getAccount_number())
+                .id(holding.getRegion_id() + "_" + holding.getShare_class_id())
+                .entity_name(holding.getShare_class_id())
+                .entity_id(holding.getShare_class_id())
                 .entity_category("share_class")
                 .event_category("holding_inactive")
                 .message("Holding for Account " + holding.getAccount_number()
                         + " in share class " + holding.getShare_class_id()
                         + " has been inactive due to " + holding.getBlocking_reason_code()
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapInactiveHoldingAccountAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())
+                .id(holding.getRegion_id() + "_" + holding.getAccount_number())
                 .entity_name(holding.getAccount_number())
                 .entity_id(holding.getAccount_number())
                 .entity_category("account")
@@ -170,12 +170,12 @@ public class HoldingStream {
                         + " in share class " + holding.getShare_class_id()
                         + " has been inactive due to " + holding.getBlocking_reason_code()
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapBalanceHoldingAccountAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())
+                .id(holding.getRegion_id() + "_" + holding.getAccount_number())
                 .entity_name(holding.getAccount_number())
                 .entity_id(holding.getAccount_number())
                 .entity_category("account")
@@ -184,28 +184,28 @@ public class HoldingStream {
                         + " in share class " + holding.getShare_class_id()
                         + " is " + holding.getQuantity()
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapBalanceHoldingClassAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())
-                .entity_name(holding.getAccount_number())
-                .entity_id(holding.getAccount_number())
+                .id(holding.getRegion_id() + "_" + holding.getShare_class_id())
+                .entity_name(holding.getShare_class_id())
+                .entity_id(holding.getShare_class_id())
                 .entity_category("share_class")
                 .event_category("holding_balance")
                 .message("Holding for Account " + holding.getAccount_number()
                         + " in share class " + holding.getShare_class_id()
                         + " exceeds 50% of the share class"
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapNewHoldingDealerAlert (final Holding holding) {
         return Alert.builder()
-                .id(holding.getId())  /* add dealer id or substring */
-                .entity_name(holding.getAccount_number())
-                .entity_id(holding.getAccount_number())
+                .id(holding.getDealer_id())
+                .entity_name(holding.getAccount_number().substring(0, 2))
+                .entity_id(holding.getAccount_number().substring(0, 2))
                 .entity_category("dealer")
                 .event_category("new_holding")
                 .message("New Holding "
@@ -213,8 +213,37 @@ public class HoldingStream {
                         + " and account " + holding.getAccount_number()
                         + " for dealer " + holding.getAccount_number()
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
+    private Alert mapNewHoldingShareClassAlert(final Holding holding) {
+        return Alert.builder()
+                .id(holding.getRegion_id() + "_" + holding.getShare_class_id())
+                .entity_name(holding.getAccount_number().substring(0, 2))
+                .entity_id(holding.getAccount_number().substring(0, 2))
+                .entity_category("dealer")
+                .event_category("new_holding")
+                .message("New Holding "
+                        + " created with share class " + holding.getShare_class_id()
+                        + " and account " + holding.getAccount_number()
+                        + " for dealer " + holding.getAccount_number()
+                        + ".")
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
+    }
+
+    private Alert mapNewHoldingAccountAlert(final Holding holding) {
+        return Alert.builder()
+                .id(holding.getRegion_id() + "_" + holding.getAccount_number())
+                .entity_name(holding.getAccount_number().substring(0, 2))
+                .entity_id(holding.getAccount_number().substring(0, 2))
+                .entity_category("dealer")
+                .event_category("new_holding")
+                .message("New Holding "
+                        + " created with share class " + holding.getShare_class_id()
+                        + " and account " + holding.getAccount_number()
+                        + " for dealer " + holding.getAccount_number()
+                        + ".")
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
+    }
 }
 

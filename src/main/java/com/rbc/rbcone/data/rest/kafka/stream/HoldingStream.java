@@ -1,19 +1,18 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.cloud.firestore.Firestore;
-import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
 import com.rbc.rbcone.data.rest.kafka.dto.Holding;
 import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
+import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.Random;
 
 @Component("HoldingStream")
 public class HoldingStream {
@@ -55,7 +54,7 @@ public class HoldingStream {
         return holding;
     }
 
-    private Holding sendHoldingAlerts(final Holding holding) {
+   /* private Holding sendHoldingAlerts(final Holding holding) {
         Random random = new Random();
         if (holding.getIs_blocked() && random.nextInt(5) == 1) {
             firestore.collection("alerts").add(mapBlockHoldingShareClassAlert(holding));
@@ -71,13 +70,52 @@ public class HoldingStream {
             firestore.collection("alerts").add(mapBalanceHoldingAccountAlert(holding));
             System.out.println("Sent alert Holding");
         }
-        /*if (holding.getQuantity() >  50 % sum all holding balance in this share class){
+        *//*if (holding.getQuantity() >  50 % sum all holding balance in this share class){
             firestore.collection("alerts_test").add(Holding.mapBalanceHoldingClassAlert(holding));
             System.out.println("Sent alert Holding");
-        }*/
+        }*//*
 
         return holding;
+    }*/
+
+    private Holding sendHoldingAlerts(final Holding holding) {
+        try
+           {
+               // processing new holding - does not exist in repository (elastic)
+               if (!elasticSearchService.isAvailable("replica_holding",holding.getId())) {
+                   firestore.collection("alerts_test").add(mapNewHoldingDealerAlert(holding));
+                   System.out.println("Sent alert New Holding");
+
+               //  check blocked holding
+                   if (holding.getIs_blocked()) {
+                       if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_holding", holding.getId()), new TypeReference<Holding>() {
+                       }).getIs_blocked()) {
+                           firestore.collection("alerts_test").add(mapBlockHoldingShareClassAlert(holding));
+                           System.out.println("Sent alert Holding Blocked");
+                       }
+                   }
+
+               //  check Inactive holding
+                   if (holding.getIs_inactive()) {
+                       if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_holding", holding.getId()), new TypeReference<Holding>() {
+                       }).getIs_inactive()) {
+                           firestore.collection("alerts_test").add(mapBlockHoldingShareClassAlert(holding));
+                           System.out.println("Sent alert Holding Inactive");
+                       }
+                   }
+
+
+
+            }
+        }
+          catch (IOException e) {
+              e.printStackTrace();
+        }
+        return holding;
     }
+
+
+
 
     private Alert mapBlockHoldingShareClassAlert (final Holding holding) {
         return Alert.builder()

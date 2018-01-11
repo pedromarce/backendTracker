@@ -2,7 +2,6 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.cloud.firestore.Firestore;
-import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
@@ -59,7 +58,7 @@ public class ShareClassStream {
                 firestore.collection("alerts_test").add(mapNewShareClassAlert(shareClass));
                 System.out.println("Sent alert Share Class");
         if (shareClass.getIs_liquidated()) {
-            if (JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
+            if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
                 firestore.collection("alerts_test").add(mapLiquidatedShareClassAlert(shareClass));
                 System.out.println("Sent alert Share Class");
             }

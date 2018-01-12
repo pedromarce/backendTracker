@@ -82,9 +82,9 @@ public class HoldingStream {
            {
                // processing new holding - does not exist in repository (elastic)
                if (!elasticSearchService.isAvailable("replica_holding",holding.getId())) {
-                   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding));
+                /*   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding));
                    firestore.collection("alerts").add(mapNewHoldingShareClassAlert(holding));
-                   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding));
+                   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding)); */
                    System.out.println("Sent alert New Holding");
                } else {
                //  check blocked holding
@@ -201,7 +201,7 @@ public class HoldingStream {
                 .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
-    private Alert mapBalanceHoldingDealerAlert (final Holding holding) {
+    private Alert mapBalanceHoldingDealerAlert(final Holding holding) {
         return Alert.builder()
                 .id(holding.getId())
                 .entity_name(holding.getDealer_id())
@@ -213,7 +213,7 @@ public class HoldingStream {
                         + " for dealer " + holding.getDealer_id()
                         + " exceeds 50% of the Dealer"
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapNewHoldingDealerAlert (final Holding holding) {

@@ -123,7 +123,7 @@ public class ShareClassStream {
                         + " in legal fund " + shareClass.getLegal_fund_id()
                         + " exceeds 30% of the legal fund"
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
 }

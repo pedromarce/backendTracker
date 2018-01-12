@@ -4,6 +4,7 @@ import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Trade;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
+import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
@@ -44,7 +45,7 @@ public class TradeStream {
 
     private Trade indexTrade(Trade trade) {
         try {
-            elasticSearchService.index("replica_legalfund", trade.getId(), trade.toMap());
+            elasticSearchService.index("replica_trade", trade.getId(), trade.toMap());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,22 +54,29 @@ public class TradeStream {
 
     private Trade sendTradeAlerts(final Trade trade) {
 
-        if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 250000) {
-            firestore.collection("alerts").add(mapNewTradeOverAmountAlert(trade, 250000));
-            System.out.println("Sent alert Trade");
-        }
-        if (trade.getQuantity() != 0 && trade.getQuantity() > 10000) {
-            firestore.collection("alerts").add(mapNewTradeOverQuantityAlert(trade, 10000));
-            System.out.println("Sent alert Trade");
-        }
+        /* TODO:
+           Need to get average for C and H transactions for the share class / dealer
+           in those settlement_amount and quantity if amount or quantity is below 10% avg or above 200% avg raise alert
+         */
 
-        if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 5000) {
-            firestore.collection("alerts").add(mapNewTradeUnderAmountAlert(trade, 5000));
-            System.out.println("Sent alert Trade");
-        }
-        if (trade.getQuantity() != 0 && trade.getQuantity() < 50) {
-            firestore.collection("alerts").add(mapNewTradeUnderQuantityAlert(trade, 50));
-            System.out.println("Sent alert Trade");
+        if (trade.getStatus_code() != "C" && trade.getStatus_code() != "H") {
+            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 250000) {
+                firestore.collection("alerts").add(mapNewTradeOverAmountAlert(trade, 250000));
+                System.out.println("Sent alert Trade");
+            }
+            if (trade.getQuantity() != 0 && trade.getQuantity() > 10000) {
+                firestore.collection("alerts").add(mapNewTradeOverQuantityAlert(trade, 10000));
+                System.out.println("Sent alert Trade");
+            }
+
+            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 100) {
+                firestore.collection("alerts").add(mapNewTradeUnderAmountAlert(trade, 100));
+                System.out.println("Sent alert Trade");
+            }
+            if (trade.getQuantity() != 0 && trade.getQuantity() < 1) {
+                firestore.collection("alerts").add(mapNewTradeUnderQuantityAlert(trade, 1));
+                System.out.println("Sent alert Trade");
+            }
         }
         return trade;
     }
@@ -79,14 +87,14 @@ public class TradeStream {
                 .entity_name(trade.getTrade_id())
                 .entity_id(trade.getTrade_id())
                 .entity_category("trade")
-                .event_category("trade_amount")
+                .event_category("high_trade_amount")
                 .message("Trade for Account " + trade.getAccount_number()
                         + " in share class " + trade.getShare_class_id()
                         + " with id " + trade.getTrade_id()
                         + " for amount " + trade.getSettlement_amount()
                         + " over threshold " + amount
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapNewTradeOverQuantityAlert(final Trade trade, final long quantity) {
@@ -95,14 +103,14 @@ public class TradeStream {
                 .entity_name(trade.getTrade_id())
                 .entity_id(trade.getTrade_id())
                 .entity_category("trade")
-                .event_category("trade_amount")
+                .event_category("high_trade_amount")
                 .message("Trade for Account " + trade.getAccount_number()
                         + " in share class " + trade.getShare_class_id()
                         + " with id " + trade.getTrade_id()
                         + " quantity " + trade.getQuantity()
                         + " over threshold " + quantity
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapNewTradeUnderAmountAlert(final Trade trade, final long amount) {
@@ -111,14 +119,14 @@ public class TradeStream {
                 .entity_name(trade.getTrade_id())
                 .entity_id(trade.getTrade_id())
                 .entity_category("trade")
-                .event_category("trade_amount")
+                .event_category("low_trade_amount")
                 .message("Trade for Account " + trade.getAccount_number()
                         + " in share class " + trade.getShare_class_id()
                         + " with id " + trade.getTrade_id()
                         + " amount " + trade.getSettlement_amount()
-                        + " over threshold " + amount
+                        + " under threshold " + amount
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
     private Alert mapNewTradeUnderQuantityAlert(final Trade trade, final long quantity) {
@@ -127,14 +135,14 @@ public class TradeStream {
                 .entity_name(trade.getTrade_id())
                 .entity_id(trade.getTrade_id())
                 .entity_category("trade")
-                .event_category("trade_amount")
+                .event_category("low_trade_amount")
                 .message("Trade for Account " + trade.getAccount_number()
                         + " in share class " + trade.getShare_class_id()
                         + " with id " + trade.getTrade_id()
                         + " quantity " + trade.getQuantity()
-                        + " over threshold " + quantity
+                        + " under threshold " + quantity
                         + ".")
-                .timestamp(new Date()).build();
+                .timestamp(RandomizeTimeStamp.getRandom()).build();
     }
 
 }

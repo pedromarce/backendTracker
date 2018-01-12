@@ -45,7 +45,7 @@ public class Trade {
     }
 
     public String getDealer_id() {
-        return region_id + "_" + account_number.substring(0,2);
+        return region_id + "_" + account_number.substring(0,3);
     }
 
     public static Trade mapTrade (final String jsonObject) {

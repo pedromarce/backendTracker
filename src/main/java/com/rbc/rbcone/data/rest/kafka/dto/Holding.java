@@ -46,7 +46,7 @@ public class Holding {
     }
 
     public String getDealer_id() {
-        return region_id + "_" + account_number.substring(0,2);
+        return region_id + "_" + account_number.substring(0,3);
     }
     public static Holding mapHolding (final String jsonObject) {
         System.out.println("Process Holding");

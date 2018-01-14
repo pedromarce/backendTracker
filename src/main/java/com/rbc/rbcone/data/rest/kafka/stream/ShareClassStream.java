@@ -2,18 +2,18 @@ package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.cloud.firestore.Firestore;
-import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Date;
 
 @Component("ShareClassStream")
 public class ShareClassStream {
@@ -24,16 +24,21 @@ public class ShareClassStream {
 
     private ElasticSearchService elasticSearchService;
 
-    public ShareClassStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
+    private KafkaProducerInstance kafkaProducerInstance;
+
+    public ShareClassStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
         this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
+        this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
     }
 
     private void buildFirebaseViewStoreStreams() {
         final KStream<String, String> shareClassStream = streamsBuilder.stream("replica_shareclass");
 
+        shareClassStream
+                .to("kafka_process");
         shareClassStream
                 .mapValues(ShareClass::mapShareClass)
                 .filter(this::filterNonNull)
@@ -62,11 +67,13 @@ public class ShareClassStream {
         try {
             if (!elasticSearchService.isAvailable("replica_shareclass",shareClass.getId())) {
                 firestore.collection("alerts").add(mapNewShareClassAlert(shareClass));
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_shareclass","{}"));
                 System.out.println("Sent alert Share Class");
             }
             else if (shareClass.getIs_liquidated()) {
                 if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
                     firestore.collection("alerts").add(mapLiquidatedShareClassAlert(shareClass));
+                    kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_shareclass","{}"));
                     System.out.println("Sent alert Share Class");
                 }
             }

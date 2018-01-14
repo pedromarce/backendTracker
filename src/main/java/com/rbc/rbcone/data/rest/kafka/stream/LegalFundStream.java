@@ -1,19 +1,18 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.google.cloud.firestore.Firestore;
-import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
-import com.rbc.rbcone.data.rest.kafka.dto.Holding;
 import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Random;
 
 @Component("LegalFundStream")
 public class LegalFundStream {
@@ -24,16 +23,21 @@ public class LegalFundStream {
 
     private ElasticSearchService elasticSearchService;
 
-    public LegalFundStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
+    private KafkaProducerInstance kafkaProducerInstance;
+
+    public LegalFundStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
         this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
+        this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
     }
 
     private void buildFirebaseViewStoreStreams() {
 
         final KStream<String, String> legalFundStream = streamsBuilder.stream("replica_legalfund");
+        legalFundStream
+                .to("kafka_process");
         legalFundStream
                 .mapValues(LegalFund::mapLegalFund)
                 .filter(this::filterNonNull)
@@ -63,6 +67,7 @@ public class LegalFundStream {
         try {
             if (!elasticSearchService.isAvailable("replica_legalfund",legalFund.getId())) {
                 firestore.collection("alerts").add(mapNewLegalFundAlert(legalFund));
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_legalfund","{}"));
                 System.out.println("Sent alert Legal Fund");
             }
         } catch (IOException e) {

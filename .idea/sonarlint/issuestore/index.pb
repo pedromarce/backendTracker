@@ -31,8 +31,6 @@ Msrc/test/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplicationTests.java,
 Ksrc/main/java/com/rbc/rbcone/data/rest/kafka/util/ElasticSearchService.java,6/4/64b977a739b193aa9952750117802d57c8a630db
 N
 logstash/logstash-elastic.conf,e/b/ebcb4bde1793eaf7483f1947ce2c6a06276ee80c
-S
-#source_data/replica_shareclass.json,d/a/da4c4befc3add432ecfcd8092170705534ae503d
 z
 Jsrc/main/java/com/rbc/rbcone/data/rest/kafka/dto/elastic/TrackerIndex.java,7/c/7c10407ec8e437088bbfc212fb7949c3da8c2817
 k
@@ -55,15 +53,7 @@ t
 Dsrc/main/java/com/rbc/rbcone/data/rest/kafka/stream/TradeStream.java,3/e/3ea8d88bf6412bac0b9d7841ea964b2fdba0692f
 P
  source_data/replica_holding.json,a/b/ab2c732a8bee5e72cb378073de7f5736db78f45d
-O
-source_data/replica_trade5.json,0/b/0bb79ede5eb01e526863442d636db10c1024f9b9
 Q
 !source_data/replica_holding5.json,a/3/a3cac3e8671278c74c290b8ee465d7690c60b1e6
-O
-source_data/replica_trade3.json,c/6/c62a8d0ac27bd3d4cc2289f4ddc15561deeca97e
 N
 source_data/replica_trade.json,4/2/4227d61387d52dca88d4736234b521ae00f80b73
-O
-source_data/replica_trade1.json,f/d/fd1265f0cf9d15bfd9f75fd1aa2f676b22da184b
-O
-source_data/replica_trade2.json,8/f/8fd0e23cda0f80df173d65f3be540e372aa8360e

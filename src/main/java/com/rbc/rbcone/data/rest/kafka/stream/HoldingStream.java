@@ -6,7 +6,9 @@ import com.rbc.rbcone.data.rest.kafka.dto.Holding;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
@@ -22,16 +24,22 @@ public class HoldingStream {
 
     private ElasticSearchService elasticSearchService;
 
-    public HoldingStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
+    private KafkaProducerInstance kafkaProducerInstance;
+
+    public HoldingStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
         this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
+        this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
     }
 
     private void buildFirebaseViewStoreStreams() {
 
         final KStream<String, String> accountStream = streamsBuilder.stream("replica_holding");
+
+        accountStream.to("kafka_process");
+
         accountStream
                 .mapValues(Holding::mapHolding)
                 .filter(this::filterNonNull)
@@ -85,7 +93,7 @@ public class HoldingStream {
                 /*   firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding));
                    firestore.collection("alerts").add(mapNewHoldingShareClassAlert(holding));
                    firestore.collection("alerts").add(mapNewHoldingDealerAlert(holding)); */
-                   System.out.println("Sent alert New Holding");
+                   //System.out.println("Sent alert New Holding");
                } else {
                //  check blocked holding
                    if (holding.getIs_blocked()) {
@@ -93,6 +101,7 @@ public class HoldingStream {
                        }).getIs_blocked()) {
                            firestore.collection("alerts").add(mapBlockHoldingShareClassAlert(holding));
                            firestore.collection("alerts").add(mapBlockHoldingAccountAlert(holding));
+                           kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_holding","{}"));
                            System.out.println("Sent alert Holding Blocked");
                        }
                    }
@@ -103,6 +112,7 @@ public class HoldingStream {
                        }).getIs_inactive()) {
                            firestore.collection("alerts").add(mapInactiveHoldingAccountAlert(holding));
                            firestore.collection("alerts").add(mapInactiveHoldingShareClassAlert(holding));
+                           kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_holding","{}"));
                            System.out.println("Sent alert Holding Inactive");
                        }
                    }

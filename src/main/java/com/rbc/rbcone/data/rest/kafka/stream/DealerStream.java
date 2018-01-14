@@ -5,7 +5,9 @@ import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
+import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
@@ -21,16 +23,21 @@ public class DealerStream {
 
     private ElasticSearchService elasticSearchService;
 
-    public DealerStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
+    private KafkaProducerInstance kafkaProducerInstance;
+
+    public DealerStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
         this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
+        this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
     }
 
     private void buildFirebaseViewStoreStreams() {
 
         final KStream<String, String> dealerStream = streamsBuilder.stream("replica_dealer");
+        dealerStream
+                .to("kafka_process");
         dealerStream
                 .mapValues(Dealer::mapDealer)
                 .filter(this::filterNonNull)
@@ -58,8 +65,11 @@ public class DealerStream {
     private Dealer sendDealerAlerts(final Dealer dealer) {
         try {
             if (!elasticSearchService.isAvailable("replica_dealer",dealer.getId())) {
-                firestore.collection("alerts").add(mapNewDealerAlert(dealer));
+                Alert alert = mapNewDealerAlert(dealer);
+                firestore.collection("alerts").add(alert);
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_dealer",JacksonMapperDecorator.writeValueAsString(alert)));
                 System.out.println("Sent alert Dealer");
+
             }
         } catch (IOException e) {
             e.printStackTrace();

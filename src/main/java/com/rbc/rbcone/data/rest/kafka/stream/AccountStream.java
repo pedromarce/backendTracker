@@ -31,6 +31,9 @@ public class AccountStream {
 
         final KStream<String, String> accountStream = streamsBuilder.stream("replica_account");
         accountStream
+                .to("kafka_process");
+
+        accountStream
                 .mapValues(Account::mapAccount)
                 .filter(this::filterNonNull)
                 .mapValues(this::indexAccount)

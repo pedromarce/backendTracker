@@ -4,13 +4,14 @@ import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Trade;
 import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
+import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Date;
 
 @Component("TradeStream")
 public class TradeStream {
@@ -21,17 +22,22 @@ public class TradeStream {
 
     private ElasticSearchService elasticSearchService;
 
-    public TradeStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
+    private KafkaProducerInstance kafkaProducerInstance;
+
+    public TradeStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
         this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
+        this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
     }
 
     private void buildFirebaseViewStoreStreams() {
 
-        final KStream<String, String> accountStream = streamsBuilder.stream("replica_trade");
-        accountStream
+        final KStream<String, String> tradeStream = streamsBuilder.stream("replica_trade");
+        tradeStream
+                .to("kafka_process");
+        tradeStream
                 .mapValues(Trade::mapTrade)
                 .filter(this::filterNonNull)
                 .mapValues(this::indexTrade)
@@ -60,21 +66,25 @@ public class TradeStream {
          */
 
         if (trade.getStatus_code() != "C" && trade.getStatus_code() != "H") {
-            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 250000) {
-                firestore.collection("alerts").add(mapNewTradeOverAmountAlert(trade, 250000));
+            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 500000) {
+                firestore.collection("alerts").add(mapNewTradeOverAmountAlert(trade, 500000));
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
                 System.out.println("Sent alert Trade");
             }
-            if (trade.getQuantity() != 0 && trade.getQuantity() > 10000) {
-                firestore.collection("alerts").add(mapNewTradeOverQuantityAlert(trade, 10000));
+            if (trade.getQuantity() != 0 && trade.getQuantity() > 15000) {
+                firestore.collection("alerts").add(mapNewTradeOverQuantityAlert(trade, 15000));
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
                 System.out.println("Sent alert Trade");
             }
 
-            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 100) {
+            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 0.1) {
                 firestore.collection("alerts").add(mapNewTradeUnderAmountAlert(trade, 100));
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
                 System.out.println("Sent alert Trade");
             }
-            if (trade.getQuantity() != 0 && trade.getQuantity() < 1) {
+            if (trade.getQuantity() != 0 && trade.getQuantity() < 0.005) {
                 firestore.collection("alerts").add(mapNewTradeUnderQuantityAlert(trade, 1));
+                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
                 System.out.println("Sent alert Trade");
             }
         }

@@ -1,9 +1,8 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
-import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
+import com.rbc.rbcone.data.rest.kafka.dto.elastic.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
@@ -14,21 +13,19 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component("ShareClassStream")
 public class ShareClassStream {
 
     private StreamsBuilder streamsBuilder;
 
-    private Firestore firestore;
-
     private ElasticSearchService elasticSearchService;
 
     private KafkaProducerInstance kafkaProducerInstance;
 
-    public ShareClassStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
+    public ShareClassStream(StreamsBuilder streamsBuilder, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
-        this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
         this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
@@ -39,6 +36,10 @@ public class ShareClassStream {
 
         shareClassStream
                 .to("kafka_process");
+        shareClassStream
+                .mapValues(ShareClass::mapShareClass)
+                .selectKey((key, value) -> value.getId())
+                .to("table_shareClass");
         shareClassStream
                 .mapValues(ShareClass::mapShareClass)
                 .filter(this::filterNonNull)
@@ -66,13 +67,13 @@ public class ShareClassStream {
     private ShareClass sendShareClassAlerts(final ShareClass shareClass) {
         try {
             if (!elasticSearchService.isAvailable("replica_shareclass",shareClass.getId())) {
-                firestore.collection("alerts").add(mapNewShareClassAlert(shareClass));
+                elasticSearchService.index("alerts", UUID.randomUUID().toString(),mapNewShareClassAlert(shareClass).toMap());
                 kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_shareclass","{}"));
                 System.out.println("Sent alert Share Class");
             }
             else if (shareClass.getIs_liquidated()) {
                 if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_shareclass", shareClass.getId()), new TypeReference<ShareClass>() {}).getIs_liquidated()) {
-                    firestore.collection("alerts").add(mapLiquidatedShareClassAlert(shareClass));
+                    elasticSearchService.index("alerts", UUID.randomUUID().toString(),mapLiquidatedShareClassAlert(shareClass).toMap());
                     kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_shareclass","{}"));
                     System.out.println("Sent alert Share Class");
                 }

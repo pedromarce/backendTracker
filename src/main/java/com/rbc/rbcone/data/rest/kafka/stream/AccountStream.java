@@ -1,8 +1,6 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
-import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Account;
-import com.rbc.rbcone.data.rest.kafka.dto.ShareClass;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -16,13 +14,10 @@ public class AccountStream {
 
     private StreamsBuilder streamsBuilder;
 
-    private Firestore firestore;
-
     private ElasticSearchService elasticSearchService;
 
-    public AccountStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService) {
+    public AccountStream(StreamsBuilder streamsBuilder, ElasticSearchService elasticSearchService) {
         this.streamsBuilder = streamsBuilder;
-        this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
         buildFirebaseViewStoreStreams();
     }

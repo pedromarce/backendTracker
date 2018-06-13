@@ -1,8 +1,7 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
-import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Dealer;
-import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
+import com.rbc.rbcone.data.rest.kafka.dto.elastic.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
@@ -13,21 +12,19 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component("DealerStream")
 public class DealerStream {
 
     private StreamsBuilder streamsBuilder;
 
-    private Firestore firestore;
-
     private ElasticSearchService elasticSearchService;
 
     private KafkaProducerInstance kafkaProducerInstance;
 
-    public DealerStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
+    public DealerStream(StreamsBuilder streamsBuilder, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
-        this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
         this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
@@ -66,7 +63,7 @@ public class DealerStream {
         try {
             if (!elasticSearchService.isAvailable("replica_dealer",dealer.getId())) {
                 Alert alert = mapNewDealerAlert(dealer);
-                firestore.collection("alerts").add(alert);
+                elasticSearchService.index("alerts", UUID.randomUUID().toString(),alert.toMap());
                 kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_dealer",JacksonMapperDecorator.writeValueAsString(alert)));
                 System.out.println("Sent alert Dealer");
 

@@ -1,8 +1,7 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
-import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
-import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
+import com.rbc.rbcone.data.rest.kafka.dto.elastic.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
@@ -13,21 +12,19 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component("LegalFundStream")
 public class LegalFundStream {
 
     private StreamsBuilder streamsBuilder;
 
-    private Firestore firestore;
-
     private ElasticSearchService elasticSearchService;
 
     private KafkaProducerInstance kafkaProducerInstance;
 
-    public LegalFundStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
+    public LegalFundStream(StreamsBuilder streamsBuilder, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
-        this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
         this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
@@ -66,7 +63,7 @@ public class LegalFundStream {
     private LegalFund sendLegalFundAlerts(final LegalFund legalFund) {
         try {
             if (!elasticSearchService.isAvailable("replica_legalfund",legalFund.getId())) {
-                firestore.collection("alerts").add(mapNewLegalFundAlert(legalFund));
+                elasticSearchService.index("alerts", UUID.randomUUID().toString(), mapNewLegalFundAlert(legalFund).toMap());
                 kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_legalfund","{}"));
                 System.out.println("Sent alert Legal Fund");
             }

@@ -3,12 +3,9 @@ package com.rbc.rbcone.data.rest.kafka.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
-import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import lombok.*;
 
-import java.util.Date;
 import java.util.Map;
 
 @NoArgsConstructor

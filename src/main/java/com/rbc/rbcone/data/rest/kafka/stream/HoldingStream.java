@@ -1,9 +1,8 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.cloud.firestore.Firestore;
 import com.rbc.rbcone.data.rest.kafka.dto.Holding;
-import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
+import com.rbc.rbcone.data.rest.kafka.dto.elastic.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.JacksonMapperDecorator;
 import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
@@ -14,21 +13,19 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component("HoldingStream")
 public class HoldingStream {
 
     private StreamsBuilder streamsBuilder;
 
-    private Firestore firestore;
-
     private ElasticSearchService elasticSearchService;
 
     private KafkaProducerInstance kafkaProducerInstance;
 
-    public HoldingStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
+    public HoldingStream(StreamsBuilder streamsBuilder, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
-        this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
         this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
@@ -99,8 +96,8 @@ public class HoldingStream {
                    if (holding.getIs_blocked()) {
                        if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_holding", holding.getId()), new TypeReference<Holding>() {
                        }).getIs_blocked()) {
-                           firestore.collection("alerts").add(mapBlockHoldingShareClassAlert(holding));
-                           firestore.collection("alerts").add(mapBlockHoldingAccountAlert(holding));
+                           elasticSearchService.index("alerts", UUID.randomUUID().toString(),mapBlockHoldingShareClassAlert(holding).toMap());
+                           elasticSearchService.index("alerts", UUID.randomUUID().toString(),mapBlockHoldingAccountAlert(holding).toMap());
                            kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_holding","{}"));
                            System.out.println("Sent alert Holding Blocked");
                        }
@@ -110,8 +107,8 @@ public class HoldingStream {
                    if (holding.getIs_inactive()) {
                        if (!JacksonMapperDecorator.readValue(elasticSearchService.findOneById("replica_holding", holding.getId()), new TypeReference<Holding>() {
                        }).getIs_inactive()) {
-                           firestore.collection("alerts").add(mapInactiveHoldingAccountAlert(holding));
-                           firestore.collection("alerts").add(mapInactiveHoldingShareClassAlert(holding));
+                           elasticSearchService.index("alerts", UUID.randomUUID().toString(),mapInactiveHoldingAccountAlert(holding).toMap());
+                           elasticSearchService.index("alerts", UUID.randomUUID().toString(),mapInactiveHoldingShareClassAlert(holding).toMap());
                            kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_holding","{}"));
                            System.out.println("Sent alert Holding Inactive");
                        }

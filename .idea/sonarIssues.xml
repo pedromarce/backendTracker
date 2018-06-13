@@ -78,6 +78,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/logstash/logstash-elastic.conf">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/logstash/logstash.conf">
           <value>
             <set />
@@ -98,6 +103,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_holding15.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_holding16.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_legalfind2.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_legalfund1.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_legalfund3.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/source_data/replica_shareclass-new.json">
           <value>
             <set />
@@ -108,7 +138,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_trade7.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/source_data/replica_trade8.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/RestToKafkaApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/controller/ElasticController.java">
           <value>
             <set />
           </value>
@@ -149,6 +194,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/Trade.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rbc/rbcone/data/rest/kafka/dto/elastic/Alert.java">
           <value>
             <set />
           </value>

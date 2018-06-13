@@ -1,32 +1,31 @@
 package com.rbc.rbcone.data.rest.kafka.stream;
 
-import com.google.cloud.firestore.Firestore;
+import com.rbc.rbcone.data.rest.kafka.dto.LegalFund;
 import com.rbc.rbcone.data.rest.kafka.dto.Trade;
-import com.rbc.rbcone.data.rest.kafka.dto.firebase.Alert;
+import com.rbc.rbcone.data.rest.kafka.dto.elastic.Alert;
 import com.rbc.rbcone.data.rest.kafka.util.ElasticSearchService;
 import com.rbc.rbcone.data.rest.kafka.util.KafkaProducerInstance;
 import com.rbc.rbcone.data.rest.kafka.util.RandomizeTimeStamp;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.KTable;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component("TradeStream")
 public class TradeStream {
 
     private StreamsBuilder streamsBuilder;
 
-    private Firestore firestore;
-
     private ElasticSearchService elasticSearchService;
 
     private KafkaProducerInstance kafkaProducerInstance;
 
-    public TradeStream(StreamsBuilder streamsBuilder, Firestore firestore, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
+    public TradeStream(StreamsBuilder streamsBuilder, ElasticSearchService elasticSearchService, KafkaProducerInstance kafkaProducerInstance) {
         this.streamsBuilder = streamsBuilder;
-        this.firestore = firestore;
         this.elasticSearchService = elasticSearchService;
         this.kafkaProducerInstance = kafkaProducerInstance;
         buildFirebaseViewStoreStreams();
@@ -34,18 +33,22 @@ public class TradeStream {
 
     private void buildFirebaseViewStoreStreams() {
 
+        final KTable<String, LegalFund> tableShareClass = streamsBuilder.table("table_shareClass");
+
         final KStream<String, String> tradeStream = streamsBuilder.stream("replica_trade");
         tradeStream
                 .to("kafka_process");
         tradeStream
                 .mapValues(Trade::mapTrade)
+                .selectKey((key, value) -> value.getId())
+                .join(tableShareClass, (trade, shareClass) -> { trade.setLegal_fund_id(shareClass.getLegal_fund_id()); return trade;})
                 .filter(this::filterNonNull)
                 .mapValues(this::indexTrade)
                 .mapValues(this::sendTradeAlerts);
 
     }
 
-    private boolean filterNonNull (String key, Trade trade) {
+    private boolean filterNonNull(String key, Trade trade) {
         return trade.getRegion_id() != null;
     }
 
@@ -65,28 +68,32 @@ public class TradeStream {
            in those settlement_amount and quantity if amount or quantity is below 10% avg or above 200% avg raise alert
          */
 
-        if (trade.getStatus_code() != "C" && trade.getStatus_code() != "H") {
-            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 500000) {
-                firestore.collection("alerts").add(mapNewTradeOverAmountAlert(trade, 500000));
-                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
-                System.out.println("Sent alert Trade");
-            }
-            if (trade.getQuantity() != 0 && trade.getQuantity() > 15000) {
-                firestore.collection("alerts").add(mapNewTradeOverQuantityAlert(trade, 15000));
-                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
-                System.out.println("Sent alert Trade");
-            }
+        try {
+            if (trade.getStatus_code() != "C" && trade.getStatus_code() != "H") {
+                if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() > 500000) {
+                    elasticSearchService.index("alerts", UUID.randomUUID().toString(), mapNewTradeOverAmountAlert(trade, 500000).toMap());
+                    kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert", "alert_trade", "{}"));
+                    System.out.println("Sent alert Trade");
+                }
+                if (trade.getQuantity() != 0 && trade.getQuantity() > 15000) {
+                    elasticSearchService.index("alerts", UUID.randomUUID().toString(), mapNewTradeOverQuantityAlert(trade, 15000).toMap());
+                    kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert", "alert_trade", "{}"));
+                    System.out.println("Sent alert Trade");
+                }
 
-            if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 0.1) {
-                firestore.collection("alerts").add(mapNewTradeUnderAmountAlert(trade, 100));
-                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
-                System.out.println("Sent alert Trade");
+                if (trade.getSettlement_amount() != 0 && trade.getSettlement_amount() < 0.1) {
+                    elasticSearchService.index("alerts", UUID.randomUUID().toString(), mapNewTradeUnderAmountAlert(trade, 100).toMap());
+                    kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert", "alert_trade", "{}"));
+                    System.out.println("Sent alert Trade");
+                }
+                if (trade.getQuantity() != 0 && trade.getQuantity() < 0.005) {
+                    elasticSearchService.index("alerts", UUID.randomUUID().toString(), mapNewTradeUnderQuantityAlert(trade, 1).toMap());
+                    kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert", "alert_trade", "{}"));
+                    System.out.println("Sent alert Trade");
+                }
             }
-            if (trade.getQuantity() != 0 && trade.getQuantity() < 0.005) {
-                firestore.collection("alerts").add(mapNewTradeUnderQuantityAlert(trade, 1));
-                kafkaProducerInstance.getProducer().send(new ProducerRecord<String, String>("alert","alert_trade","{}"));
-                System.out.println("Sent alert Trade");
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return trade;
     }

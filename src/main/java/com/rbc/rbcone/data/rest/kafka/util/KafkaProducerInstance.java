@@ -14,7 +14,7 @@ public class KafkaProducerInstance {
 
     public KafkaProducerInstance() {
         final Properties props = new Properties();
-        props.put("bootstrap.servers", "2a481954-kafka0.pub.or.eventador.io:9092");
+        props.put("bootstrap.servers", "localhost:9092");
         props.put("acks", "all");
         props.put("retries", 0);
         props.put("batch.size", 16384);

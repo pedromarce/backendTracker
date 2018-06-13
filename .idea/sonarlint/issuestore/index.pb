@@ -57,3 +57,19 @@ Q
 !source_data/replica_holding5.json,a/3/a3cac3e8671278c74c290b8ee465d7690c60b1e6
 N
 source_data/replica_trade.json,4/2/4227d61387d52dca88d4736234b521ae00f80b73
+S
+#source_data/replica_legalfund1.json,7/3/730f6192a0807858526d0c30e47bce899508dc83
+O
+source_data/replica_trade6.json,4/c/4c9057465cb6b073816c3a9f3c3a12576b0085c1
+S
+#source_data/replica_legalfund2.json,5/b/5bf4cbcb19587d0dd36495c8ad00c2ed57625039
+S
+#source_data/replica_legalfund3.json,b/b/bb48eb66c2cbb7aeafb244d787bf240cdfc3c8e2
+O
+source_data/replica_trade5.json,0/b/0bb79ede5eb01e526863442d636db10c1024f9b9
+Q
+!source_data/replica_holding1.json,9/3/93860624e8f34f973681982174577de98a8b46da
+O
+source_data/replica_trade4.json,1/4/147ca384ca94c5ec9722a4007cdadd2df4a45182
+R
+"src/test/resources/test.properties,8/d/8d7b54dab27f82472a1cdb8e9903c8a3ed5ec26a
